@@ -41,7 +41,7 @@ const App = () => {
 
       {/* Footer */}
       <footer className="text-center text-gray-600 py-4">
-        <p>&copy; {new Date().getFullYear()} Columbia University</p>
+        <p>{new Date().getFullYear()} Columbia University</p>
       </footer>
     </div>
   );
