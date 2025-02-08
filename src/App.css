@@ -45,6 +45,7 @@ body {
 #eventListWrapper {
   height: 200px; /* Set the height for the scrollable container */
   overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 10px; /* Prevent scrolling text from cutting off */
 }
 
 #bwEventList {

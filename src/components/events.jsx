@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
+
   useEffect(() => {
     const script1 = document.createElement("script");
     script1.type = "text/javascript";
@@ -23,14 +25,19 @@ const Events = () => {
         resourcesRoot:
           "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme",
         limitList: false,
-        limit: 5,
+        limit: 200, // Temporarily load all events to limit later
         displayStartDateOnlyInList: true,
         displayTimeInList: true,
         displayLocationInList: false,
         listMode: "byTitle",
         displayInNewWindow: false,
       };
+
       insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
+
+      // Get events after loading and limit to 5
+      const loadedEvents = bwObject.getEvents();
+      setEvents(loadedEvents.slice(0, 5)); // Limit to 5 events
     };
 
     return () => {
@@ -42,7 +49,11 @@ const Events = () => {
   return (
     <div id="bwOutput">
       <div id="eventListWrapper">
-        <ul id="bwEventList"></ul>
+        <ul id="bwEventList">
+          {events.map((event, index) => (
+            <li key={index}>{event.title}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
