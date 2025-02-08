@@ -29,8 +29,6 @@ export async function getColumbiaSpectatorHeadlines() {
 }
 
 export async function getBarnardBulletinHeadlines() {
-  // Inspect the Barnard Bulletin site and find a more specific selector for headlines.
-  // This is a *guess* and you *must* verify it.
-  const selector = ".article-title a"; // Example, needs verification!
+  const selector = "h2";
   return await scrapeNews(BARNARD_BULLETIN_URL, selector);
 }
