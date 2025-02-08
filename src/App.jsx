@@ -6,19 +6,27 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // URL for fetching event data in JSON format (use proxy if needed)
-    const eventsURL = 'https://cors-anywhere.herokuapp.com/https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&count=50';
+    // URL for fetching event data in JSON format
+    const eventsURL = 'https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&count=200';
 
     // Fetch the event data
-    fetch(eventsURL)
-      .then((response) => response.json())
+    fetch(eventsURL, { mode: 'no-cors' })
+      .then((response) => response.text())  // Get the raw response as text
       .then((data) => {
-        setEvents(data.bwEventList.events || []);
-        setLoading(false);
+        console.log('Raw Response:', data);  // Log the response to check for error messages
+        try {
+          const jsonData = JSON.parse(data);  // Try to parse it as JSON
+          console.log('Parsed JSON:', jsonData);
+          setEvents(jsonData.bwEventList.events || []);  // Extract events if JSON is valid
+          setLoading(false);  // Set loading to false after data is fetched
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          setLoading(false);  // Set loading to false even if parsing fails
+        }
       })
       .catch((error) => {
         console.error('Error fetching event data:', error);
-        setLoading(false);
+        setLoading(false);  // Set loading to false on error
       });
   }, []);
 
@@ -41,7 +49,7 @@ const App = () => {
                 <p><strong>Time:</strong> {event.start.time}</p> {/* Event time */}
                 <p><strong>Location:</strong> {event.location.address}</p> {/* Location address */}
                 {event.location.link && (
-                  <p><a href={event.location.link} target="_blank" rel="noopener noreferrer">View on map</a></p> 
+                  <p><a href={event.location.link} target="_blank" rel="noopener noreferrer">View on map</a></p>
                 )}
                 {event.link ? (
                   <p><a href={event.link} target="_blank" rel="noopener noreferrer">More Info</a></p>
