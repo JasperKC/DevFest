@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%;
+  width: 100%; /*test*/
   background-color: #9BDDFF; /* Default background color for body */
   color: #333333; /* Default text color */
 }
@@ -17,9 +17,9 @@ body {
 /* App Container Styling */
 .app-container {
   font-family: 'Arial', sans-serif;
-  padding: 20px;
+  padding: 10px;
   height: 100vh; /* Ensure the app takes the full height */
-  width: 1000px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Space out the content */
