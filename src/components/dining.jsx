@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-const Dining = () => {
+const DiningWidget = () => {
   const [diningHalls, setDiningHalls] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://devfest-npjn.onrender.com") // Fetch from your local API
+    fetch("https://devfest-npjn.onrender.com") // Replace with your actual API URL
       .then((res) => res.json())
       .then((data) => {
         setDiningHalls(data);
@@ -18,23 +18,44 @@ const Dining = () => {
   }, []);
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow">
-      <h2 className="text-xl font-semibold mb-4">🍽 Today's Dining Menu</h2>
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+      <h2 className="text-2xl font-bold text-center mb-4">🍽 Columbia Dining Menus</h2>
       {loading ? (
-        <p>Loading menu...</p>
+        <p className="text-center text-gray-600">Loading menu...</p>
       ) : (
-        <div>
+        <div className="space-y-6">
           {diningHalls.map((hall, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="text-lg font-bold">{hall.name}</h3>
-              <p className="text-gray-600">{hall.openTime} - {hall.status}</p>
-              <ul className="list-disc ml-5 mt-2">
+            <div key={index} className="p-4 border rounded-lg shadow-md">
+              {/* Dining Hall Name & Status */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold">{hall.name}</h3>
+                <span
+                  className={`px-3 py-1 rounded-full text-sm font-bold ${
+                    hall.status === "OPEN"
+                      ? "bg-green-200 text-green-800"
+                      : "bg-red-200 text-red-800"
+                  }`}
+                >
+                  {hall.status}
+                </span>
+              </div>
+              <p className="text-gray-600 text-sm">{hall.openTime}</p>
+
+              {/* Menu Items in Grid Layout */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
                 {hall.menu.length > 0 ? (
-                  hall.menu.map((item, i) => <li key={i}>{item}</li>)
+                  hall.menu.map((item, i) => (
+                    <div
+                      key={i}
+                      className="bg-gray-100 p-2 rounded-md text-sm text-center"
+                    >
+                      {item}
+                    </div>
+                  ))
                 ) : (
-                  <li>No menu available</li>
+                  <p className="text-gray-500">No menu available</p>
                 )}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -43,4 +64,4 @@ const Dining = () => {
   );
 };
 
-export default Dining;
+export default DiningWidget;
