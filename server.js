@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 
 // Serve the dining menu JSON
-app.get("/menus", (req, res) => {
+app.get("/", (req, res) => {
   fs.readFile("diningMenus.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading JSON file:", err);
