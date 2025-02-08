@@ -19,7 +19,7 @@ body {
   font-family: 'Arial', sans-serif;
   padding: 20px;
   height: 100vh; /* Ensure the app takes the full height */
-  width: 100%;
+  width: 1000px;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Space out the content */
