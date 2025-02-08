@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css"; // Ensure your custom CSS is in this file
-import Weather from "./components/Weather";
-import Events from "./components/Events";
+import Weather from "./components/weather";
+import Events from "./components/events";
 
 const App = () => {
   return (
