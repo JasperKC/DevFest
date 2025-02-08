@@ -50,6 +50,7 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for widget */
   max-height: 200px; /* Set max height to display 5 items */
   overflow-y: auto; /* Enable vertical scrolling */
+  display: block; /* Ensure it's block-level */
 }
 
 /* Styling for individual event list items */
