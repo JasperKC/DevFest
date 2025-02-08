@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ffffff; /* Default light background for body */
+  background-color:#9BDDFF; /* Default light background for body */
   color: #333333; /* Default text color */
 }
 
@@ -27,8 +27,7 @@ body {
 
 /* Light Mode Styles */
 @media (prefers-color-scheme: light) {
-  body {
-    background-color: #ffffff; /* Light background for the body */
+  body {/* Light background for the body */
     color: #333333; /* Dark text */
   }
 
@@ -76,7 +75,6 @@ body {
 /* Dark Mode Styles */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #121212; /* Dark background for the body */
     color: #ffffff; /* Light text */
   }
 
