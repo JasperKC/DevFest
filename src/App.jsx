@@ -6,20 +6,19 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // URL for fetching event data in JSON format
-    const eventsURL = 'https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&count=200';
+    // URL for fetching event data in JSON format (use proxy if needed)
+    const eventsURL = 'https://cors-anywhere.herokuapp.com/https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&count=50';
 
     // Fetch the event data
     fetch(eventsURL)
-      .then((response) => response.json()) // Parse the response as JSON
+      .then((response) => response.json())
       .then((data) => {
-        console.log('Fetched Data:', data); // Debugging: log the fetched data
-        setEvents(data.bwEventList?.events || []); // Ensure safe access to events
-        setLoading(false); // Stop loading when data is fetched
+        setEvents(data.bwEventList.events || []);
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching event data:', error);
-        setLoading(false); // Stop loading in case of an error
+        setLoading(false);
       });
   }, []);
 
