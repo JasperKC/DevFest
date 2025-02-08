@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css"; // Ensure your custom CSS is in this file
 import Weather from "./components/weather";
 import Events from "./components/events";
+import Dining from "./components/dining";
 
 const App = () => {
   return (
@@ -20,6 +21,11 @@ const App = () => {
         {/* Columbia Events Widget */}
         <div className="widget-container" id="event-widget-container">
           <Events />
+        </div>
+
+        {/* Columbia Dining Widget */}
+        <div className="widget-container" id="dining-widget-container">
+          <Dining />
         </div>
 
         {/* News Widget */}
