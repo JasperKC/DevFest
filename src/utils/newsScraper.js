@@ -4,7 +4,7 @@ const COLUMBIA_SPECTATOR_URL = "https://www.columbiaspectator.com/";
 const BARNARD_BULLETIN_URL = "https://barnardbulletin.com/";
 
 async function scrapeNews(url, selector) {
-  const browser = await puppeteer.launch({ headless: true }); // Set headless to false for debugging
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   try {
     await page.goto(url, { waitUntil: "networkidle2" });
@@ -17,7 +17,7 @@ async function scrapeNews(url, selector) {
     return headlines;
   } catch (error) {
     console.error(`Error scraping ${url}:`, error);
-    return []; // Return empty array in case of error
+    return [`Error scraping ${url}: ${error.message}`]; // Return an error message
   } finally {
     await browser.close();
   }
@@ -29,10 +29,8 @@ export async function getColumbiaSpectatorHeadlines() {
 }
 
 export async function getBarnardBulletinHeadlines() {
-  const selector = "h2";
-  const headlines = await page.evaluate((sel) => {
-    const firstHeadline = document.querySelector(sel);
-    return firstHeadline ? [firstHeadline.innerText.trim()] : [];
-  }, selector);
-  return headlines;
+  // Inspect the Barnard Bulletin site and find a more specific selector for headlines.
+  // This is a *guess* and you *must* verify it.
+  const selector = ".article-title a"; // Example, needs verification!
+  return await scrapeNews(BARNARD_BULLETIN_URL, selector);
 }
