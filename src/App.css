@@ -3,111 +3,90 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif; /* Modern, clean font */
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%; /*test*/
-  background-color: #9BDDFF; /* Default background color for body */
-  color: #333333; /* Default text color */
-}
-
-/* App Container Styling */
-.app-container {
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
-  height: 100vh; /* Ensure the app takes the full height */
-  width: 100vw;
+  background-color: #f5f7fa; /* Softer background */
+  color: #333;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space out the content */
-  background-color: inherit; /* Inherit background color from body */
-  color: inherit; /* Inherit text color from body */
+  align-items: center;
+  justify-content: center;
 }
 
-/* Styling for the widget container */
-.bwEventsTitle {
-  font-size: 1.8rem;
+/* Navigation Bar */
+nav {
+  background-color: #0056b3; /* Deep blue */
+  padding: 15px 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #333333; /* Title color */
-  text-align: center;
-  margin-bottom: 20px;
-  text-decoration: underline;
 }
 
-#bwEventsCount {
-  color: #7f8c8d; /* Nice grey color */
-  text-align: center;
-  margin-bottom: 10px;
+/* Main Content */
+.app-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
-/* Event Widget Container (Scrollable container) */
-#event-widget-container {
-  max-height: 400px; /* Set max height to display 5 items */
-  overflow-y: auto; /* Enable vertical scrolling */
-  display: block; /* Ensure it's block-level */
-  color: inherit; /* Inherit text color */
-}
-#dining-widget-container {
-  max-height: 400px; /* Set max height to display 5 items */
-  overflow-y: auto; /* Enable vertical scrolling */
-  display: block; /* Ensure it's block-level */
-  color: inherit; /* Inherit text color */
-}
-/* Styling for individual event list items */
-#event-widget-container li {
-  list-style: none; /* Remove list bullets */
-  padding: 5px; /* Add some padding around each item */
-}
-
-/* Footer styling */
-.footer {
-  text-align: center;
-  font-size: 1rem;
-  color: #666666;
-  margin-top: 100px;
-}
-
-/* Loading message */
-.loading-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #bbbbbb; /* Light grey for loading text */
-  margin-top: 30px;
-}
-
-/* Container for Weather and Events widgets */
+/* Grid Layout for Widgets */
 .content-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Creates a responsive grid */
-  gap: 20px;  /* Adds space between grid items */
-  justify-items: stretch; /* Ensures grid items stretch to fill their grid cell horizontally */
-  align-items: stretch; /* Ensures grid items stretch to fill their grid cell vertically */
-  width: 100%; /* Ensures it takes up the full width of the parent */
-  height: 100vh; /* Ensures it takes up the full height of the viewport */
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
+@media (min-width: 768px) {
+  .content-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets/desktops */
+  }
+}
 
-/* Styling for each widget container */
+@media (min-width: 1024px) {
+  .content-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on larger screens */
+  }
+}
+
+/* Widget Containers */
 .widget-container {
-  width: 80%;
-  max-width: 600px;
+  background: white;
   padding: 20px;
-  background-color: #0064b5; /* Light background */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  color: white; /* Ensure text is white by default */
 }
 
-.widget-container a {
-  color: #ffffff; /* Light color for links */
-  text-decoration: none; /* Optional: remove underline */
+.widget-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #0056b3;
 }
 
-.widget-container a:hover {
-  color: #f0f0f0; /* Slightly lighter color for hover effect */
-  text-decoration: underline; /* Optional: underline on hover */
+/* Dining Widget Specific Styling */
+.dining-widget {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .dining-widget {
+    grid-column: span 2; /* Dining spans 2 columns on tablets/desktops */
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 40px;
 }
