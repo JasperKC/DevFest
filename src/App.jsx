@@ -3,6 +3,7 @@ import "./App.css"; // Make sure this has Tailwind or custom styles
 import Weather from "./components/weather";
 import Events from "./components/events";
 import Dining from "./components/dining";
+import News from "./components/news";
 
 const App = () => {
   return (
@@ -30,6 +31,11 @@ const App = () => {
           <div className="bg-white p-4 rounded-lg shadow-md md:col-span-2">
             <Dining />
           </div>
+        </div>
+
+        {/* News Widget */}
+        <div className="widget-container">
+          <News />
         </div>
       </div>
 
