@@ -84,3 +84,12 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
   text-align: center;
 }
+.widget-container a {
+  color: #ffffff; /* Light color for links */
+  text-decoration: none; /* Optional: remove underline */
+}
+
+.widget-container a:hover {
+  color: #f0f0f0; /* Slightly lighter color for hover effect */
+  text-decoration: underline; /* Optional: underline on hover */
+}
