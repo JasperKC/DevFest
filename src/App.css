@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ffffff; /* Default light background for body */
+  background-color: #9BDDFF; /* Default background color for body */
   color: #333333; /* Default text color */
 }
 
@@ -25,134 +25,79 @@ body {
   color: inherit; /* Inherit text color from body */
 }
 
-/* Light Mode Styles */
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #ffffff; /* Light background for the body */
-    color: #333333; /* Dark text */
-  }
-
-  .header h1 {
-    color: #333333; /* Dark text for title */
-  }
-
-  .header p {
-    color: #666666; /* Light grey text for description */
-  }
-
-  /* Styling for the widget container */
-  #bwEventsTitle {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #333333; /* Dark color for title */
-    text-align: center;
-    margin-bottom: 20px;
-    text-decoration: underline;
-  }
-
-  #bwEventsCount {
-    color: #7f8c8d; /* Nice grey color */
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  #bwEventList {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9; /* Light background for events */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for widget */
-  }
-
-  /* Footer styling */
-  .footer {
-    text-align: center;
-    font-size: 1rem;
-    color: #666666;
-    margin-top: 40px;
-  }
+/* Styling for the widget container */
+#bwEventsTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333333; /* Title color */
+  text-align: center;
+  margin-bottom: 20px;
+  text-decoration: underline;
 }
 
-/* Dark Mode Styles */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212; /* Dark background for the body */
-    color: #ffffff; /* Light text */
-  }
-
-  .header h1 {
-    color: #ffffff; /* Light text for title */
-  }
-
-  .header p {
-    color: #bbbbbb; /* Lighter grey for description */
-  }
-
-  /* Styling for the widget container */
-  #bwEventsTitle {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #ffffff; /* Light color for title */
-    text-align: center;
-    margin-bottom: 20px;
-    text-decoration: underline;
-  }
-
-  #bwEventsCount {
-    color: #bbbbbb; /* Light grey color for event count */
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  #bwEventList {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #333333; /* Dark background for events */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Darker shadow for contrast */
-  }
-
-  /* Loading message */
-  .loading-message {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #bbbbbb; /* Light grey for loading text */
-    margin-top: 30px;
-  }
-
-  /* Footer styling */
-  .footer {
-    text-align: center;
-    font-size: 1rem;
-    color: #bbbbbb; /* Light grey footer text */
-    margin-top: 40px;
-  }
-
-  /* Container for Weather and Events widgets */
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between widgets */
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Styling for each widget container */
-  .widget-container {
-    width: 80%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: #f9f9f9; /* Light background */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    text-align: center;
-  }
-
-  /* Dark Mode Styles */
-  @media (prefers-color-scheme: dark) {
-    .widget-container {
-      background-color: #222222; /* Darker background */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More prominent shadow */
-    }
+#bwEventsCount {
+  color: #7f8c8d; /* Nice grey color */
+  text-align: center;
+  margin-bottom: 10px;
 }
+
+/* Event Widget Container (Scrollable container) */
+#event-widget-container {
+  max-height: 400px; /* Set max height to display 5 items */
+  overflow-y: auto; /* Enable vertical scrolling */
+  display: block; /* Ensure it's block-level */
+  color: inherit; /* Inherit text color */
+}
+
+/* Styling for individual event list items */
+#event-widget-container li {
+  list-style: none; /* Remove list bullets */
+  padding: 5px; /* Add some padding around each item */
+}
+
+/* Footer styling */
+.footer {
+  text-align: center;
+  font-size: 1rem;
+  color: #666666;
+  margin-top: 100px;
+}
+
+/* Loading message */
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #bbbbbb; /* Light grey for loading text */
+  margin-top: 30px;
+}
+
+/* Container for Weather and Events widgets */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between widgets */
+  align-items: left;
+  justify-content: center;
+}
+
+/* Styling for each widget container */
+.widget-container {
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #0064b5; /* Light background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
+  text-align: center;
+  color: white; /* Ensure text is white by default */
+}
+
+.widget-container a {
+  color: #ffffff; /* Light color for links */
+  text-decoration: none; /* Optional: remove underline */
+}
+
+.widget-container a:hover {
+  color: #f0f0f0; /* Slightly lighter color for hover effect */
+  text-decoration: underline; /* Optional: underline on hover */
 }

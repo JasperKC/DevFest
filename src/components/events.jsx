@@ -11,7 +11,7 @@ const Events = () => {
     const script2 = document.createElement("script");
     script2.type = "text/javascript";
     script2.src =
-      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(((vpath=%22/public/aliases/Type/Career%20Fair%22)%20or%20(vpath=%22/public/aliases/Type/Open%20House%22)%20or%20(vpath=%22/public/aliases/Type/Panel%22)%20or%20(vpath=%22/public/aliases/Type/Seminar%22)%20or%20(vpath=%22/public/aliases/Type/Sports%22)%20or%20(vpath=%22/public/aliases/Type/Theater%22)%20or%20(vpath=%22/public/aliases/Type/Workshop%22)%20or%20(vpath=%22/public/aliases/Type/Discussion%22)%20or%20(vpath=%22/public/aliases/Type/Cultural%22)%20or%20(vpath=%22/public/aliases/Type/Conference%22)))%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&setappvar=objName(bwObject)&count=20";
+      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(((vpath=%22/public/aliases/Type/Career%20Fair%22)%20or%20(vpath=%22/public/aliases/Type/Open%20House%22)%20or%20(vpath=%22/public/aliases/Type/Panel%22)%20or%20(vpath=%22/public/aliases/Type/Seminar%22)%20or%20(vpath=%22/public/aliases/Type/Sports%22)%20or%20(vpath=%22/public/aliases/Type/Theater%22)%20or%20(vpath=%22/public/aliases/Type/Workshop%22)%20or%20(vpath=%22/public/aliases/Type/Discussion%22)%20or%20(vpath=%22/public/aliases/Type/Cultural%22)%20or%20(vpath=%22/public/aliases/Type/Conference%22)))%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&setappvar=objName(bwObject)&count=200";
     document.body.appendChild(script2);
 
     script2.onload = () => {
@@ -31,6 +31,10 @@ const Events = () => {
         displayInNewWindow: false,
       };
       insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
+      const titleElement = document.querySelector('#bwOutput h3');  // Or whatever element holds the title
+      if (titleElement) {
+        titleElement.style.textDecoration = 'underline';  // Apply underline
+      }
     };
 
     return () => {
