@@ -41,14 +41,22 @@ body {
   margin-bottom: 10px;
 }
 
+/* Event List Wrapper (Scrollable Container) */
+#eventListWrapper {
+  height: 200px; /* Set the height for the scrollable container */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
 #bwEventList {
   margin-top: 20px;
   padding: 10px;
   background-color: #f9f9f9; /* Light background for events */
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for widget */
-  height: 200px; /* Set a fixed height for the list */
-  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+#bwEventList li {
+  height: 40px; /* Adjust height of each list item */
 }
 
 /* Footer styling */
@@ -86,6 +94,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
   text-align: center;
 }
+
 .widget-container a {
   color: #ffffff; /* Light color for links */
   text-decoration: none; /* Optional: remove underline */
