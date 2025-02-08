@@ -45,12 +45,13 @@ body {
 #event-widget-container {
   margin-top: 20px;
   padding: 10px;
-  background-color: #f9f9f9; /* Light background for events */
+  background-color: #f9f9f9; /* Keep this background color */
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for widget */
   max-height: 200px; /* Set max height to display 5 items */
   overflow-y: auto; /* Enable vertical scrolling */
   display: block; /* Ensure it's block-level */
+  color: inherit; /* Inherit text color */
 }
 
 /* Styling for individual event list items */
@@ -94,6 +95,7 @@ body {
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
   text-align: center;
+  color: white; /* Ensure text is white by default */
 }
 
 .widget-container a {
