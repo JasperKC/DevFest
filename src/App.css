@@ -9,6 +9,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
   background-color: #9BDDFF; /* Default background color for body */
   color: #333333; /* Default text color */
 }
@@ -18,6 +19,7 @@ body {
   font-family: 'Arial', sans-serif;
   padding: 20px;
   height: 100vh; /* Ensure the app takes the full height */
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Space out the content */
@@ -73,12 +75,15 @@ body {
 
 /* Container for Weather and Events widgets */
 .content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Space between widgets */
-  align-items: left;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Creates a responsive grid */
+  gap: 20px;  /* Adds space between grid items */
+  justify-items: stretch; /* Ensures grid items stretch to fill their grid cell horizontally */
+  align-items: stretch; /* Ensures grid items stretch to fill their grid cell vertically */
+  width: 100%; /* Ensures it takes up the full width of the parent */
+  height: 100vh; /* Ensures it takes up the full height of the viewport */
 }
+
 
 /* Styling for each widget container */
 .widget-container {
