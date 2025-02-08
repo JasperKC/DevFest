@@ -2,6 +2,12 @@
 .app-container {
   font-family: 'Arial', sans-serif;
   padding: 20px;
+  height: 100vh; /* Ensures the app takes full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out the content */
+  background-color: #ffffff; /* Default light background */
+  color: #333333; /* Default light text */
 }
 
 /* Light Mode Styles */
@@ -172,4 +178,11 @@
     color: #bbbbbb;
     margin-top: 40px;
   }
+}
+
+/* Ensure no unexpected margins or padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
