@@ -140,17 +140,9 @@ body {
     width: 80%;
     max-width: 600px;
     padding: 20px;
-    background-color: #f9f9f9; /* Light background */
+    background-color: #0064b5; /* Light background */
     border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
     text-align: center;
   }
-
-  /* Dark Mode Styles */
-  @media (prefers-color-scheme: dark) {
-    .widget-container {
-      background-color: #222222; /* Darker background */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* More prominent shadow */
-    }
-}
 }
