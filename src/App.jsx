@@ -11,11 +11,17 @@ const App = () => {
         <p>Stay up to date with what's happening around Columbia Campus</p>
       </header>
 
-      {/* Weather Widget */}
-      <Weather />
+      <div className="content-container">
+        {/* Weather Widget */}
+        <div className="widget-container">
+          <Weather />
+        </div>
 
-      {/* Columbia Events Widget */}
-      <Events />
+        {/* Columbia Events Widget */}
+        <div className="widget-container">
+          <Events />
+        </div>
+      </div>
 
       <footer className="footer">
         <p>&copy; {new Date().getFullYear()} Columbia University</p>
