@@ -20,6 +20,17 @@ app.get("/", (req, res) => {
   });
 });
 
+// Serve the news JSON
+app.get("/news", (req, res) => {
+  fs.readFile("news.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ Error reading news JSON file:", err);
+      return res.status(500).json({ error: "Failed to load news data" });
+    }
+    res.json(JSON.parse(data));
+  });
+});
+
 // Run the scraper daily at 6 AM
 cron.schedule("0 6 * * *", () => {
   console.log("⏳ Running daily dining menu scrape...");
@@ -32,6 +43,21 @@ cron.schedule("0 6 * * *", () => {
       console.error(`⚠️ Script stderr: ${stderr}`);
     }
     console.log(`✅ Script Output: ${stdout}`);
+  });
+});
+
+// Run the news scraper daily at 7 AM
+cron.schedule("0 7 * * *", () => {
+  console.log("⏳ Running daily news scrape...");
+  exec("node newsScraper.js", (error, stdout, stderr) => {
+    if (error) {
+      console.error(`❌ Error executing news script: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`⚠️ Script stderr: ${stderr}`);
+    }
+    console.log(`✅ News Script Output: ${stdout}`);
   });
 });
 

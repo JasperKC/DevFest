@@ -1,55 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { getColumbiaSpectatorHeadlines, getBarnardBulletinHeadlines } from '../utils/newsScraper';
+import React, { useState, useEffect } from "react";
 
-function NewsComponent() {
-  const [spectatorHeadlines, setSpectatorHeadlines] = useState([]);
-  const [bulletinHeadlines, setBulletinHeadlines] = useState([]);
+const News = () => {
+  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchHeadlines() {
-      try {
-        const spectator = await getColumbiaSpectatorHeadlines();
-        const bulletin = await getBarnardBulletinHeadlines();
-        setSpectatorHeadlines(spectator);
-        setBulletinHeadlines(bulletin);
-      } catch (err) {
-        setError(err);
-        console.error("Error fetching headlines:", err);
-      } finally {
+    fetch("https://devfest-npjn.onrender.com/news")
+      .then((res) => res.json())
+      .then((data) => {
+        setNews(data);
         setLoading(false);
-      }
-    }
-
-    fetchHeadlines();
+      })
+      .catch((error) => {
+        console.error("Error fetching news data:", error);
+        setLoading(false);
+      });
   }, []);
 
-  if (loading) {
-    return <div>Loading headlines...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
-    <div>
-      <h2>Columbia Spectator Headlines</h2>
-      <ul>
-        {spectatorHeadlines.map((headline, index) => (
-          <li key={index}>{headline}</li>
-        ))}
-      </ul>
-
-      <h2>Barnard Bulletin Headlines</h2>
-      <ul>
-        {bulletinHeadlines.map((headline, index) => (
-          <li key={index}>{headline}</li>
-        ))}
-      </ul>
+    <div className="bg-white p-4 rounded-lg shadow">
+      <h2 className="text-xl font-semibold mb-4">📰 Latest News</h2>
+      {loading ? (
+        <p>Loading news...</p>
+      ) : (
+        <ul className="list-disc ml-5">
+          {news.map((article, index) => (
+            <li key={index} className="mb-2">
+              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                {article.headline}
+              </a>
+              <span className="text-gray-500 text-sm"> - {article.category}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
-}
+};
 
-export default NewsComponent;
+export default News;
