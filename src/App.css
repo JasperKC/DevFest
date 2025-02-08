@@ -91,9 +91,11 @@ body {
   max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
+  scrollbar-width: thin; /* Hides scrollbar by default */
+  scrollbar-color: transparent transparent; /* Fully hidden when idle */
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar (Only Visible While Scrolling) */
 #event-widget-container::-webkit-scrollbar,
 #dining-widget-container::-webkit-scrollbar {
   width: 5px;
@@ -101,13 +103,20 @@ body {
 
 #event-widget-container::-webkit-scrollbar-thumb,
 #dining-widget-container::-webkit-scrollbar-thumb {
-  background: #888;
+  background: transparent; /* Default state: hidden */
   border-radius: 10px;
+  transition: background 0.3s ease-in-out;
 }
 
-#event-widget-container::-webkit-scrollbar-thumb:hover,
-#dining-widget-container::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* Show scrollbar only when scrolling */
+#event-widget-container:hover::-webkit-scrollbar-thumb,
+#dining-widget-container:hover::-webkit-scrollbar-thumb {
+  background: #888; /* Becomes visible when hovered */
+}
+
+#event-widget-container:hover::-webkit-scrollbar-thumb:hover,
+#dining-widget-container:hover::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker on active scroll */
 }
 
 /* Footer */
