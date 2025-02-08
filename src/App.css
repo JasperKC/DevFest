@@ -91,32 +91,36 @@ body {
   max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
-  scrollbar-width: thin; /* Hides scrollbar by default */
-  scrollbar-color: transparent transparent; /* Fully hidden when idle */
+  scrollbar-width: thin; /* Keeps it minimal */
+  scrollbar-color: transparent transparent; /* Hidden by default */
 }
 
-/* Custom Scrollbar (Only Visible While Scrolling) */
+/* Custom Scrollbar (Hidden Until Scrolling) */
 #event-widget-container::-webkit-scrollbar,
 #dining-widget-container::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+  transition: opacity 0.3s ease-in-out;
 }
 
+/* Scrollbar Thumb (Default: Hidden) */
 #event-widget-container::-webkit-scrollbar-thumb,
 #dining-widget-container::-webkit-scrollbar-thumb {
-  background: transparent; /* Default state: hidden */
+  background: transparent;
   border-radius: 10px;
-  transition: background 0.3s ease-in-out;
 }
 
-/* Show scrollbar only when scrolling */
+/* Show scrollbar while actively scrolling */
+#event-widget-container:active::-webkit-scrollbar-thumb,
 #event-widget-container:hover::-webkit-scrollbar-thumb,
+#dining-widget-container:active::-webkit-scrollbar-thumb,
 #dining-widget-container:hover::-webkit-scrollbar-thumb {
-  background: #888; /* Becomes visible when hovered */
+  background: #aaa;
 }
 
-#event-widget-container:hover::-webkit-scrollbar-thumb:hover,
-#dining-widget-container:hover::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker on active scroll */
+/* Darker on active scroll */
+#event-widget-container::-webkit-scrollbar-thumb:hover,
+#dining-widget-container::-webkit-scrollbar-thumb:hover {
+  background: #777;
 }
 
 /* Footer */
