@@ -7,51 +7,60 @@ const scrapeNews = async () => {
 
   let news = [];
 
-  // Scrape first news website (Example: The New York Times)
+  // Scrape the Spectator
   try {
-    await page.goto("https://www.nytimes.com/", { waitUntil: "networkidle2" });
-    let nytimesNews = await page.evaluate(() => {
+    await page.goto("https://www.columbiaspectator.com/", {
+      waitUntil: "networkidle2",
+    });
+
+    let specNews = await page.evaluate(() => {
       let articles = [];
-      document.querySelectorAll("article").forEach((article) => {
+      document
+        .querySelectorAll(
+          ".CDSBigArticle_BigArticleContainer-sc-lxcqafz-1, .CDSMediumArticle_MediumArticleContainer-sc-ztv0od-0"
+        )
+        .forEach((article) => {
+          let headline =
+            article
+              .querySelector(".CDSArticleInfo__Headline-sc-7lnjft-2")
+              ?.innerText.trim() || "No headline";
+          let link = article.querySelector("a")?.href || "#";
+          let category =
+            article
+              .querySelector(".CDSArticleInfo__Section-sc-7lnjft-0")
+              ?.innerText.trim() || "General";
+
+          articles.push({ headline, link, category });
+        });
+      return articles;
+    });
+
+    news = [...news, ...specNews];
+  } catch (error) {
+    console.error("❌ Error scraping Spectator:", error);
+  }
+
+  // Scrape Barnard Bulletin
+  try {
+    await page.goto("https://www.thebarnardbulletin.com/", {
+      waitUntil: "networkidle2",
+    });
+
+    let bulletinNews = await page.evaluate(() => {
+      let articles = [];
+      document.querySelectorAll("._HhgCcE").forEach((article) => {
         let headline =
           article.querySelector("h2")?.innerText.trim() || "No headline";
         let link = article.querySelector("a")?.href || "#";
-        let category =
-          article.querySelector("section")?.innerText.trim() || "General";
 
-        articles.push({ headline, link, category });
+        articles.push({ headline, link, category: "General" }); // No category found in the screenshot
       });
       return articles;
     });
 
-    news = [...news, ...nytimesNews];
+    news = [...news, ...bulletinNews];
   } catch (error) {
-    console.error("❌ Error scraping NYT:", error);
-  }
-
-  // Scrape second news website (Example: BBC)
-  try {
-    await page.goto("https://www.bbc.com/news", { waitUntil: "networkidle2" });
-    let bbcNews = await page.evaluate(() => {
-      let articles = [];
-      document.querySelectorAll(".gs-c-promo").forEach((article) => {
-        let headline =
-          article
-            .querySelector(".gs-c-promo-heading__title")
-            ?.innerText.trim() || "No headline";
-        let link = article.querySelector("a")?.href || "#";
-        let category =
-          article.querySelector(".gs-c-section-link")?.innerText.trim() ||
-          "General";
-
-        articles.push({ headline, link, category });
-      });
-      return articles;
-    });
-
-    news = [...news, ...bbcNews];
-  } catch (error) {
-    console.error("❌ Error scraping BBC:", error);
+    console.error("❌ Error scraping Bulletin:", error);
   }
 
   console.log("📰 Scraped News:", news);
