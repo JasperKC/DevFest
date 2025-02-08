@@ -21,6 +21,11 @@ const App = () => {
         <div className="widget-container">
           <Events />
         </div>
+
+        {/* News Widget */}
+        <div className="widget-container">
+          <News />
+        </div>
       </div>
 
       <footer className="footer">
