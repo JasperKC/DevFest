@@ -3,6 +3,7 @@ import "./App.css"; // Ensure your custom CSS is in this file
 import Weather from "./components/weather";
 import Events from "./components/events";
 import Dining from "./components/dining";
+import News from "./components/news";
 
 const App = () => {
   return (
@@ -27,6 +28,12 @@ const App = () => {
         <div className="widget-container" id="dining-widget-container">
           <Dining />
         </div>
+
+        {/* News Widget */}
+        <div className="widget-container">
+          <News />
+        </div>
+
       </div>
 
       <footer className="footer">
