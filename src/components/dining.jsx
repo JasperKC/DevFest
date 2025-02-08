@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const DiningWidget = () => {
+const Dining = () => {
   const [diningHalls, setDiningHalls] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -64,4 +64,4 @@ const DiningWidget = () => {
   );
 };
 
-export default DiningWidget;
+export default Dining;
