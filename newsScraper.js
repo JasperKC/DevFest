@@ -17,7 +17,7 @@ const scrapeNews = async () => {
       let articles = [];
       document
         .querySelectorAll(
-          ".CDSBigArticle_BigArticleContainer-sc-lxcqafz-1, .CDSMediumArticle_MediumArticleContainer-sc-ztv0od-0"
+          ".CDSBigArticle__BigArticleContainer-sc-lxcqafz-1, .CDSMediumArticle__MediumArticleContainer-sc-ztv0od-0"
         )
         .forEach((article) => {
           let headline =
