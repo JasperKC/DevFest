@@ -10,6 +10,7 @@ body {
   padding: 0;
   height: 100%;
   background-color: #ffffff; /* Default light background for body */
+  color: #333333; /* Default text color */
 }
 
 /* App Container Styling */
@@ -21,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: space-between; /* Space out the content */
   background-color: inherit; /* Inherit background color from body */
-  color: #333333; /* Default text color */
+  color: inherit; /* Inherit text color from body */
 }
 
 /* Light Mode Styles */
@@ -76,11 +77,11 @@ body {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #121212; /* Dark background for the body */
-    color: #ffffff; /* Light text for dark mode */
+    color: #ffffff; /* Light text */
   }
 
   .header h1 {
-    color: #ffffff; /* Light text for the title */
+    color: #ffffff; /* Light text for title */
   }
 
   .header p {
@@ -98,7 +99,7 @@ body {
   }
 
   #bwEventsCount {
-    color: #bbbbbb; /* Light grey color */
+    color: #bbbbbb; /* Light grey color for event count */
     text-align: center;
     margin-bottom: 10px;
   }
@@ -111,11 +112,19 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Darker shadow for contrast */
   }
 
+  /* Loading message */
+  .loading-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #bbbbbb; /* Light grey for loading text */
+    margin-top: 30px;
+  }
+
   /* Footer styling */
   .footer {
     text-align: center;
     font-size: 1rem;
-    color: #bbbbbb;
+    color: #bbbbbb; /* Light grey footer text */
     margin-top: 40px;
   }
 
