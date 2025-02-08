@@ -35,22 +35,6 @@ const scrapeDiningHalls = async () => {
     const menuPage = await browser.newPage();
     await menuPage.goto(hall.link, { waitUntil: "networkidle2" });
 
-    // Check if it's the JJ's Place website and click the 'All' button if present
-    if (hall.name.includes("JJ's Place")) {
-      console.log("🔘 Clicking 'All' button on JJ's Place page");
-      await menuPage
-        .waitForSelector("button[ng-click='setFilter('All')']", {
-          timeout: 5000,
-        })
-        .catch(() => {
-          console.log("⚠️ 'All' button not found on JJ's Place page");
-        });
-      await menuPage.click("button[ng-click='setFilter('All')']").catch(() => {
-        console.log("⚠️ Failed to click 'All' button");
-      });
-      await menuPage.waitForTimeout(2000); // Wait for content to update
-    }
-
     // Ensure menu items are loaded
     await menuPage
       .waitForSelector(".meal-title.ng-binding", { timeout: 5000 })
