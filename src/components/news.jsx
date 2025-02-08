@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getColumbiaSpectatorHeadlines, getBarnardBulletinHeadlines } from '../utils/newsScraper';
+import { getColumbiaSpectatorHeadlines, getBarnardBulletinHeadlines } from './newsScraper';
 
 function NewsComponent() {
   const [spectatorHeadlines, setSpectatorHeadlines] = useState([]);
