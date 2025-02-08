@@ -1,46 +1,73 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  box-sizing: border-box;
 }
 
-h1 {
-  color: #1e3a8a;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.lionpulse-container {
+  padding: 20px;
+}
+
+.header {
   text-align: center;
+  background-color: #005b8f; /* Columbia Blue */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-.scroll-area {
-  width: 100%;
-  max-width: 768px;
-  height: 400px;
+.header h1 {
+  font-size: 3rem;
+}
+
+.header p {
+  font-size: 1.2rem;
+}
+
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  overflow-y: auto;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card {
-  cursor: pointer;
-  padding: 16px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease-in-out;
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card:hover {
-  background-color: #f1f5f9;
+.event-card h2 {
+  font-size: 1.8rem;
+  color: #005b8f;
+  margin-bottom: 10px;
 }
 
-.selected-event {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.event-card p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.footer {
   text-align: center;
+  margin-top: 20px;
+  color: #888;
+}
+
+.footer p {
+  font-size: 0.9rem;
 }
