@@ -31,10 +31,6 @@ const Events = () => {
         displayInNewWindow: false,
       };
       insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
-      const titleElement = document.querySelector('#bwOutput h3');  // Or whatever element holds the title
-      if (titleElement) {
-        titleElement.style.textDecoration = 'underline';  // Apply underline
-      }
     };
 
     return () => {
