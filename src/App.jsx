@@ -7,13 +7,14 @@ const App = () => {
 
   useEffect(() => {
     // URL for fetching event data in JSON format
-    const eventsURL = 'https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&count=50';
+    const eventsURL = 'https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&count=200';
 
     // Fetch the event data
     fetch(eventsURL)
       .then((response) => response.json()) // Parse the response as JSON
       .then((data) => {
-        setEvents(data.bwEventList.events); // Accessing events array within bwEventList
+        console.log('Fetched Data:', data); // Debugging: log the fetched data
+        setEvents(data.bwEventList?.events || []); // Ensure safe access to events
         setLoading(false); // Stop loading when data is fetched
       })
       .catch((error) => {
@@ -33,22 +34,26 @@ const App = () => {
         <div className="loading-message">Loading events...</div>
       ) : (
         <div className="events-list">
-          {events.map((event, index) => (
-            <div key={index} className="event-card">
-              <h2>{event.summary}</h2> {/* Event title */}
-              <p><strong>Date:</strong> {event.start.longdate}</p> {/* Full date */}
-              <p><strong>Time:</strong> {event.start.time}</p> {/* Event time */}
-              <p><strong>Location:</strong> {event.location.address}</p> {/* Location address */}
-              {event.location.link && (
-                <p><a href={event.location.link} target="_blank" rel="noopener noreferrer">View on map</a></p> 
-              )}
-              {event.link ? (
-                <p><a href={event.link} target="_blank" rel="noopener noreferrer">More Info</a></p>
-              ) : (
-                <p>No additional info</p>
-              )}
-            </div>
-          ))}
+          {events.length > 0 ? (
+            events.map((event, index) => (
+              <div key={index} className="event-card">
+                <h2>{event.summary}</h2> {/* Event title */}
+                <p><strong>Date:</strong> {event.start.longdate}</p> {/* Full date */}
+                <p><strong>Time:</strong> {event.start.time}</p> {/* Event time */}
+                <p><strong>Location:</strong> {event.location.address}</p> {/* Location address */}
+                {event.location.link && (
+                  <p><a href={event.location.link} target="_blank" rel="noopener noreferrer">View on map</a></p> 
+                )}
+                {event.link ? (
+                  <p><a href={event.link} target="_blank" rel="noopener noreferrer">More Info</a></p>
+                ) : (
+                  <p>No additional info</p>
+                )}
+              </div>
+            ))
+          ) : (
+            <div>No events available at the moment.</div>
+          )}
         </div>
       )}
 
