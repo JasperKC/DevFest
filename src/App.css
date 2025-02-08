@@ -79,6 +79,12 @@ body {
   color: white;
 }
 
+/* Hover Effect */
+.widget-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
 /* Scrollable Widgets */
 #event-widget-container,
 #dining-widget-container {
