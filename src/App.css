@@ -70,7 +70,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px; /* Space between widgets */
-  align-items: center;
+  align-items: left;
   justify-content: center;
 }
 
