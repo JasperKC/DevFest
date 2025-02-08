@@ -4,7 +4,7 @@ import fs from "fs";
 const DINING_URL = "https://dining.columbia.edu/";
 
 const scrapeDiningHalls = async () => {
-  const browser = await puppeteer.launch({ headless: false }); // Set headless: true for background execution
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(DINING_URL, { waitUntil: "networkidle2" });
 
@@ -24,22 +24,22 @@ const scrapeDiningHalls = async () => {
 
   console.log("📍 Found Dining Halls:", diningHalls);
 
-  // Visit each dining hall page to scrape the menu
+  // Now visit each dining hall page to scrape the menu
   for (let hall of diningHalls) {
     console.log(`🔎 Scraping menu for: ${hall.name}`);
     const menuPage = await browser.newPage();
     await menuPage.goto(hall.link, { waitUntil: "networkidle2" });
 
-    // If the dining hall is "JJ's Place", click the "All" button
-    if (hall.name === "JJ's Place") {
-      console.log(`🛠 Clicking 'All' button for ${hall.name}...`);
-      try {
-        await menuPage.waitForSelector("button[data-ng-click=\"setMenu('All')\"]", { timeout: 5000 });
-        await menuPage.click("button[data-ng-click=\"setMenu('All')\"]");
-        await menuPage.waitForTimeout(1000); // Wait for menu to update
-      } catch (error) {
-        console.log("⚠️ 'All' button not found or could not be clicked.");
-      }
+    // Check if it's the JJ's Place website and click the 'All' button if present
+    if (hall.name.includes("JJ's Place")) {
+      console.log("🔘 Clicking 'All' button on JJ's Place page");
+      await menuPage.waitForSelector("button[ng-click='setFilter(\'All\')']", { timeout: 5000 }).catch(() => {
+        console.log("⚠️ 'All' button not found on JJ's Place page");
+      });
+      await menuPage.click("button[ng-click='setFilter(\'All\')']").catch(() => {
+        console.log("⚠️ Failed to click 'All' button");
+      });
+      await menuPage.waitForTimeout(2000); // Wait for content to update
     }
 
     // Ensure menu items are loaded
