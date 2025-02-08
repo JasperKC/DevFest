@@ -1,33 +1,41 @@
-/* General styling for the app */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif; /* Modern, clean font */
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   background-color: #f5f7fa; /* Softer background */
   color: #333;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 }
 
 /* Navigation Bar */
 nav {
-  background-color: #0056b3; /* Deep blue */
+  background-color: #003366; /* Columbia Blue */
   padding: 15px 0;
   width: 100%;
   text-align: center;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Main Content */
+.nav-subtext {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+/* Main Content Container */
 .app-container {
   width: 100%;
   max-width: 1100px;
@@ -35,7 +43,7 @@ nav {
   margin: 0 auto;
 }
 
-/* Grid Layout for Widgets */
+/* Responsive Grid Layout */
 .content-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -46,32 +54,54 @@ nav {
 
 @media (min-width: 768px) {
   .content-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets/desktops */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
   .content-container {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on larger screens */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Widget Containers */
+/* Widget Styling */
 .widget-container {
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
+  background: white;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
+  transition: transform 0.2s ease-in-out;
 }
 
-.widget-container a {
-  color: #ffffff; /* Light color for links */
-  text-decoration: none; /* Optional: remove underline */
+.widget-container:hover {
+  transform: scale(1.02);
 }
 
-.widget-container a:hover {
-  color: #f0f0f0; /* Slightly lighter color for hover effect */
-  text-decoration: underline; /* Optional: underline on hover */
+.widget-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #0056b3;
+}
+
+/* Dining Widget - Bigger Grid */
+.dining-widget {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .dining-widget {
+    grid-column: span 2;
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #666;
+  opacity: 0.7;
+  margin-top: 40px;
+  border-top: 1px solid #ddd;
 }
