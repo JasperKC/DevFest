@@ -41,19 +41,19 @@ body {
   margin-bottom: 10px;
 }
 
-/* Event List Styling (Scrollable container) */
-#bwEventList {
+/* Event Widget Container (Scrollable container) */
+#event-widget-container {
   margin-top: 20px;
   padding: 10px;
   background-color: #f9f9f9; /* Light background for events */
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for widget */
-  max-height: 200px; /* Max height to display 5 items at once */
+  max-height: 200px; /* Set max height to display 5 items */
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Styling for individual event list items */
-#bwEventList li {
+#event-widget-container li {
   height: 40px; /* Set height for each event */
   list-style: none; /* Remove list bullets */
   padding: 5px; /* Add some padding around each item */

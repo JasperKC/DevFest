@@ -18,7 +18,7 @@ const App = () => {
         </div>
 
         {/* Columbia Events Widget */}
-        <div className="widget-container">
+        <div className="widget-container" id="event-widget-container">
           <Events />
         </div>
       </div>
