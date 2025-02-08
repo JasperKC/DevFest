@@ -1,50 +1,175 @@
+/* General styling for the app */
 .app-container {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
   padding: 20px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 30px;
+/* Light Mode Styles */
+@media (prefers-color-scheme: light) {
+  .app-container {
+    background-color: #ffffff; /* Light background for the app */
+    color: #333333; /* Dark text */
+  }
+
+  .header h1 {
+    color: #333333; /* Dark text for title */
+  }
+
+  .header p {
+    color: #666666; /* Light grey text for description */
+  }
+
+  /* Styling for the widget container */
+  #bwEventsTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333333; /* Dark color for title to make it visible */
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline; /* Underline the title */
+  }
+
+  #bwEventsCount {
+    color: #7f8c8d; /* Nice grey color */
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  #bwEventList {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for events */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for the widget */
+  }
+
+  .events-list {
+    margin-top: 20px;
+  }
+
+  .event-card {
+    background-color: #f0f0f0; /* Light background for each event */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-card h2 {
+    color: #333333; /* Dark color for the event title */
+  }
+
+  .event-card p {
+    color: #555555; /* Dark grey color for the event details */
+  }
+
+  .event-card a {
+    color: #3498db; /* Blue link color */
+    text-decoration: none;
+  }
+
+  .event-card a:hover {
+    text-decoration: underline;
+  }
+
+  /* Loading message */
+  .loading-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #999999;
+    margin-top: 30px;
+  }
+
+  /* Footer styling */
+  .footer {
+    text-align: center;
+    font-size: 1rem;
+    color: #666666;
+    margin-top: 40px;
+  }
 }
 
-.header h1 {
-  font-size: 2.5rem;
-  color: #2980b9;
-}
+/* Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+  .app-container {
+    background-color: #121212; /* Dark background for the app */
+    color: #ffffff; /* Light text for dark mode */
+  }
 
-.header p {
-  font-size: 1.2rem;
-  color: #34495e;
-}
+  .header h1 {
+    color: #ffffff; /* Light text for the title */
+  }
 
-.footer {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 0.9rem;
-  color: #7f8c8d;
-}
+  .header p {
+    color: #bbbbbb; /* Lighter grey for description */
+  }
 
-#bwEventsTitle {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #7f8c8d; /* Nice grey color */
-  text-align: center;
-  margin-bottom: 20px;
-  text-decoration: underline; /* Underline the title */
-}
+  /* Styling for the widget container */
+  #bwEventsTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff; /* Light color for title */
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
 
-#bwEventsCount {
-  color: #7f8c8d; /* Nice grey color */
-  text-align: center;
-  margin-bottom: 10px;
-}
+  #bwEventsCount {
+    color: #bbbbbb; /* Light grey color */
+    text-align: center;
+    margin-bottom: 10px;
+  }
 
-#bwEventList {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f9f9f9; /* Light background for events */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for the widget */
+  #bwEventList {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #333333; /* Dark background for events */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Darker shadow for contrast */
+  }
+
+  .events-list {
+    margin-top: 20px;
+  }
+
+  .event-card {
+    background-color: #444444; /* Dark background for each event */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .event-card h2 {
+    color: #ffffff; /* Light color for event titles */
+  }
+
+  .event-card p {
+    color: #bbbbbb; /* Lighter grey for event details */
+  }
+
+  .event-card a {
+    color: #3498db; /* Blue link color */
+    text-decoration: none;
+  }
+
+  .event-card a:hover {
+    text-decoration: underline;
+  }
+
+  /* Loading message */
+  .loading-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #bbbbbb;
+    margin-top: 30px;
+  }
+
+  /* Footer styling */
+  .footer {
+    text-align: center;
+    font-size: 1rem;
+    color: #bbbbbb;
+    margin-top: 40px;
+  }
 }
