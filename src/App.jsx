@@ -3,7 +3,7 @@ import "./App.css"; // Make sure this is included
 import Weather from "./components/weather";
 import Events from "./components/events";
 import Dining from "./components/dining";
-import News from "./components/news";
+//import News from "./components/news";
 
 const App = () => {
   return (
