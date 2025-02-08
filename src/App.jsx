@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './LionPulse.css';
+import './App.css';
 
 const eventsData = [
   { title: 'Columbia Basketball Game', time: '6:00 PM', location: 'Lerner Hall', description: 'Come support the Lions!' },
