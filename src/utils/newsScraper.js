@@ -1,20 +1,9 @@
 import puppeteer from "puppeteer";
+import fs from "fs";
 
-const COLUMBIA_SPECTATOR_URL = "https://www.columbiaspectator.com/";
-const BARNARD_BULLETIN_URL = "https://barnardbulletin.com/";
-
-async function scrapeNews(url, selector) {
+const scrapeNews = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-  try {
-    await page.goto(url, { waitUntil: "networkidle2" });
-
-    const headlines = await page.evaluate((sel) => {
-      const headlineElements = document.querySelectorAll(sel);
-      return Array.from(headlineElements).map((el) => el.innerText.trim());
-    }, selector);
-
-    return headlines;
 
   let news = [];
 
@@ -23,38 +12,31 @@ async function scrapeNews(url, selector) {
     await page.goto("https://www.columbiaspectator.com/", {
       waitUntil: "networkidle2",
     });
+
     let specNews = await page.evaluate(() => {
       let articles = [];
-      document.querySelectorAll("article").forEach((article) => {
-        let headline =
-          article.querySelector("h2")?.innerText.trim() || "No headline";
-        let link = article.querySelector("a")?.href || "#";
-        let category =
-          article.querySelector("section")?.innerText.trim() || "General";
+      document
+        .querySelectorAll(
+          ".CDSBigArticle_BigArticleContainer-sc-lxcqafz-1, .CDSMediumArticle_MediumArticleContainer-sc-ztv0od-0"
+        )
+        .forEach((article) => {
+          let headline =
+            article
+              .querySelector(".CDSArticleInfo__Headline-sc-7lnjft-2")
+              ?.innerText.trim() || "No headline";
+          let link = article.querySelector("a")?.href || "#";
+          let category =
+            article
+              .querySelector(".CDSArticleInfo__Section-sc-7lnjft-0")
+              ?.innerText.trim() || "General";
 
-        articles.push({ headline, link, category });
-      });
+          articles.push({ headline, link, category });
+        });
       return articles;
     });
 
     news = [...news, ...specNews];
   } catch (error) {
-    console.error(`Error scraping ${url}:`, error);
-    return [`Error scraping ${url}: ${error.message}`]; // Return an error message
-  } finally {
-    await browser.close();
-  }
-}
-
-export async function getColumbiaSpectatorHeadlines() {
-  const selector = "[class*='CDSArticleInfo__HeadlineContainer-sc-7lnjft-1'] a"; // Attribute selector
-  return await scrapeNews(COLUMBIA_SPECTATOR_URL, selector);
-}
-
-export async function getBarnardBulletinHeadlines() {
-  const selector = "h2";
-  return await scrapeNews(BARNARD_BULLETIN_URL, selector);
-}
     console.error("❌ Error scraping Spectator:", error);
   }
 
@@ -63,19 +45,15 @@ export async function getBarnardBulletinHeadlines() {
     await page.goto("https://www.thebarnardbulletin.com/", {
       waitUntil: "networkidle2",
     });
+
     let bulletinNews = await page.evaluate(() => {
       let articles = [];
-      document.querySelectorAll(".gs-c-promo").forEach((article) => {
+      document.querySelectorAll("._HhgCcE").forEach((article) => {
         let headline =
-          article
-            .querySelector(".gs-c-promo-heading__title")
-            ?.innerText.trim() || "No headline";
+          article.querySelector("h2")?.innerText.trim() || "No headline";
         let link = article.querySelector("a")?.href || "#";
-        let category =
-          article.querySelector(".gs-c-section-link")?.innerText.trim() ||
-          "General";
 
-        articles.push({ headline, link, category });
+        articles.push({ headline, link, category: "General" }); // No category found in the screenshot
       });
       return articles;
     });
