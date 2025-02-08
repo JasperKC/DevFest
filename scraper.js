@@ -3,6 +3,7 @@ import fs from "fs";
 
 const DINING_URL = "https://dining.columbia.edu/";
 
+
 const scrapeDiningHalls = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
