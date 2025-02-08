@@ -3,7 +3,7 @@ import "./App.css"; // Make sure this has Tailwind or custom styles
 import Weather from "./components/weather";
 import Events from "./components/events";
 import Dining from "./components/dining";
-import News from "./components/news";
+// import News from "./components/news";
 
 const App = () => {
   return (
@@ -34,9 +34,9 @@ const App = () => {
         </div>
 
         {/* News Widget */}
-        <div className="widget-container">
+        {/* <div className="widget-container">
           <News />
-        </div>
+        </div> */}
       </div>
 
       {/* Footer */}
