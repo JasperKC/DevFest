@@ -1,82 +1,89 @@
-/* Global styling */
-body {
+.app-container {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-
-/* Main container */
-.app-container {
-  max-width: 900px;
-  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
 }
 
-/* Header styling */
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .header h1 {
   font-size: 2.5rem;
-  margin: 0;
+  color: #2980b9;
 }
 
 .header p {
-  font-size: 1.1rem;
-  color: #666;
+  font-size: 1.2rem;
+  color: #34495e;
 }
 
-/* Event List */
-.events-list {
-  margin-top: 20px;
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
 }
 
-.event-card {
-  background-color: #f9f9f9;
-  padding: 15px;
-  margin-bottom: 20px;
+/* Customize the widget container */
+#bwOutput {
+  margin-top: 40px;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.event-card h2 {
+.widgetTitle {
   font-size: 1.8rem;
-  margin-bottom: 10px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.event-card p {
-  font-size: 1.1rem;
-  margin: 5px 0;
+.eventItem {
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
-.event-card a {
-  color: #007bff;
-  text-decoration: none;
+.eventItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.event-card a:hover {
+.eventTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2980b9;
+}
+
+.eventTitle:hover {
   text-decoration: underline;
 }
 
-/* Loading Message */
-.loading-message {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 20px;
-  color: #888;
+.eventDate,
+.eventDetails {
+  font-size: 1rem;
+  color: #7f8c8d;
 }
 
-/* Footer styling */
-.footer {
-  text-align: center;
-  margin-top: 40px;
+.eventLink {
   font-size: 1rem;
-  color: #888;
+  color: #2980b9;
+  text-decoration: none;
+  padding: 8px 15px;
+  background-color: #2980b9;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.eventLink:hover {
+  background-color: #3498db;
 }
