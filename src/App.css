@@ -43,7 +43,7 @@ body {
 
 /* Event Widget Container (Scrollable container) */
 #event-widget-container {
-  max-height: 300px; /* Set max height to display 5 items */
+  max-height: 400px; /* Set max height to display 5 items */
   overflow-y: auto; /* Enable vertical scrolling */
   display: block; /* Ensure it's block-level */
   color: inherit; /* Inherit text color */
