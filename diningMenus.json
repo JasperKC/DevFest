@@ -1,0 +1,41 @@
+[
+  {
+    "name": "JJ's Place",
+    "link": "https://dining.columbia.edu/content/jjs-place-0",
+    "openTime": "12:00 PM - 10:00 AM",
+    "status": "OPEN",
+    "menu": [
+      "Pepperoni Pizza Eggroll"
+    ]
+  },
+  {
+    "name": "Ferris Booth Commons",
+    "link": "https://dining.columbia.edu/content/ferris-booth-commons-0",
+    "openTime": "9:00 AM - 8:00 PM",
+    "status": "OPEN",
+    "menu": [
+      "French Toast",
+      "Scrambled Eggs",
+      "Hash Brown Patty",
+      "Ham",
+      "Turkey Sausage",
+      "Biscuits and Sausage Gravy",
+      "Roasted Carrots",
+      "Just Egg",
+      "Roasted Potatoes",
+      "Bagel Bar",
+      "Sweet Potatoes",
+      "Peri Peri Tofu",
+      "Corn",
+      "Beef Stir Fry",
+      "Soba Noodles",
+      "Edamame",
+      "Eggs Rolls",
+      "Broccoli and Garlic",
+      "Jackfruit Stir Fry",
+      "Edamame",
+      "Broccoli and Garlic",
+      "Halal Cart"
+    ]
+  }
+]
