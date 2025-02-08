@@ -1,19 +1,33 @@
 /* General styling for the app */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ffffff; /* Default light background for body */
+}
+
+/* App Container Styling */
 .app-container {
   font-family: 'Arial', sans-serif;
   padding: 20px;
-  height: 100vh; /* Ensures the app takes full height */
+  height: 100vh; /* Ensure the app takes the full height */
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Space out the content */
-  background-color: #ffffff; /* Default light background */
-  color: #333333; /* Default light text */
+  background-color: inherit; /* Inherit background color from body */
+  color: #333333; /* Default text color */
 }
 
 /* Light Mode Styles */
 @media (prefers-color-scheme: light) {
-  .app-container {
-    background-color: #ffffff; /* Light background for the app */
+  body {
+    background-color: #ffffff; /* Light background for the body */
     color: #333333; /* Dark text */
   }
 
@@ -29,10 +43,10 @@
   #bwEventsTitle {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #333333; /* Dark color for title to make it visible */
+    color: #333333; /* Dark color for title */
     text-align: center;
     margin-bottom: 20px;
-    text-decoration: underline; /* Underline the title */
+    text-decoration: underline;
   }
 
   #bwEventsCount {
@@ -45,45 +59,8 @@
     margin-top: 20px;
     padding: 10px;
     background-color: #f9f9f9; /* Light background for events */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for the widget */
-  }
-
-  .events-list {
-    margin-top: 20px;
-  }
-
-  .event-card {
-    background-color: #f0f0f0; /* Light background for each event */
-    padding: 15px;
-    margin: 10px 0;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .event-card h2 {
-    color: #333333; /* Dark color for the event title */
-  }
-
-  .event-card p {
-    color: #555555; /* Dark grey color for the event details */
-  }
-
-  .event-card a {
-    color: #3498db; /* Blue link color */
-    text-decoration: none;
-  }
-
-  .event-card a:hover {
-    text-decoration: underline;
-  }
-
-  /* Loading message */
-  .loading-message {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #999999;
-    margin-top: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for widget */
   }
 
   /* Footer styling */
@@ -97,8 +74,8 @@
 
 /* Dark Mode Styles */
 @media (prefers-color-scheme: dark) {
-  .app-container {
-    background-color: #121212; /* Dark background for the app */
+  body {
+    background-color: #121212; /* Dark background for the body */
     color: #ffffff; /* Light text for dark mode */
   }
 
@@ -134,43 +111,6 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Darker shadow for contrast */
   }
 
-  .events-list {
-    margin-top: 20px;
-  }
-
-  .event-card {
-    background-color: #444444; /* Dark background for each event */
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  }
-
-  .event-card h2 {
-    color: #ffffff; /* Light color for event titles */
-  }
-
-  .event-card p {
-    color: #bbbbbb; /* Lighter grey for event details */
-  }
-
-  .event-card a {
-    color: #3498db; /* Blue link color */
-    text-decoration: none;
-  }
-
-  .event-card a:hover {
-    text-decoration: underline;
-  }
-
-  /* Loading message */
-  .loading-message {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #bbbbbb;
-    margin-top: 30px;
-  }
-
   /* Footer styling */
   .footer {
     text-align: center;
@@ -178,11 +118,4 @@
     color: #bbbbbb;
     margin-top: 40px;
   }
-}
-
-/* Ensure no unexpected margins or padding */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
