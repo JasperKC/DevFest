@@ -3,7 +3,6 @@ import "./App.css"; // Make sure this is included
 import Weather from "./components/weather";
 import Events from "./components/events";
 import Dining from "./components/dining";
-//import News from "./components/news";
 
 const App = () => {
   return (
@@ -17,18 +16,18 @@ const App = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Weather & Events Side-by-Side */}
           <div className="widget-container">
             <Weather />
           </div>
-          <div className="widget-container">
+          <div className="widget-container scrollable">
             <Events />
           </div>
 
           {/* Dining Menu Spans Full Width */}
-          <div className="widget-container dining-widget md:col-span-2">
+          <div className="widget-container dining-widget scrollable">
             <Dining />
           </div>
         </div>

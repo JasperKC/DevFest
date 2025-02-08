@@ -38,7 +38,7 @@ nav {
 /* Main Content Container */
 .app-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   padding: 20px;
   margin: 0 auto;
 }
@@ -54,13 +54,13 @@ nav {
 
 @media (min-width: 768px) {
   .content-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Weather & Events side-by-side */
   }
 }
 
 @media (min-width: 1024px) {
   .content-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 3-column layout */
   }
 }
 
@@ -72,6 +72,7 @@ nav {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease-in-out;
+  height: 100%; /* Ensures even sizing */
 }
 
 .widget-container:hover {
@@ -84,15 +85,41 @@ nav {
   color: #0056b3;
 }
 
-/* Dining Widget - Bigger Grid */
+/* Dining Widget - Full Width */
 .dining-widget {
   grid-column: span 1;
 }
 
 @media (min-width: 768px) {
   .dining-widget {
-    grid-column: span 2;
+    grid-column: span 2; /* Dining spans 2 columns */
   }
+}
+
+@media (min-width: 1024px) {
+  .dining-widget {
+    grid-column: span 3; /* Dining spans full width */
+  }
+}
+
+/* Scrollable Lists for Long Content */
+.scrollable {
+  max-height: 300px; /* Limits height */
+  overflow-y: auto; /* Enables scrolling */
+  padding-right: 10px;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* Footer */
