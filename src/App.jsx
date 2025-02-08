@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse';
 import './App.css';
+import Papa from 'papaparse';  // Make sure you install Papa Parse
 
 const App = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // CSV URL
+    // URL for fetching event data in CSV format
     const eventsURL = 'https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(categories.href!=%22/public/.bedework/categories/sys/Ongoing%22)%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-csv&count=50';
+    
+    // Using CORS proxy to bypass CORS restriction
+    const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
 
     // Fetch the CSV data
-    fetch(eventsURL)
-      .then((response) => response.text()) // Get the response as text (CSV format)
-      .then((csvText) => {
-        // Parse the CSV text into JSON
+    fetch(CORS_PROXY + eventsURL)
+      .then(response => response.text())
+      .then(csvText => {
+        // Parse the CSV data
         Papa.parse(csvText, {
-          header: true,  // Treat first row as headers
+          header: true,  // Use headers in CSV to map the values
           skipEmptyLines: true,  // Skip empty lines
           complete: (result) => {
-            setEvents(result.data); // Set parsed data into events
-            setLoading(false); // Stop loading once data is fetched
+            setEvents(result.data);  // Set the events data
+            setLoading(false);  // Turn off the loading state
           },
           error: (error) => {
             console.error('Error parsing CSV:', error);
-            setLoading(false); // Stop loading in case of error
+            setLoading(false);
           }
         });
       })
       .catch((error) => {
         console.error('Error fetching event data:', error);
-        setLoading(false); // Stop loading in case of error
+        setLoading(false);
       });
   }, []);
 
@@ -49,11 +52,11 @@ const App = () => {
             events.map((event, index) => (
               <div key={index} className="event-card">
                 <h2>{event.summary}</h2> {/* Event title */}
-                <p><strong>Date:</strong> {event.startlongdate}</p> {/* Full start date */}
+                <p><strong>Date:</strong> {event.startlongdate}</p> {/* Full date */}
                 <p><strong>Time:</strong> {event.starttime}</p> {/* Event time */}
                 <p><strong>Location:</strong> {event.locationaddress}</p> {/* Location address */}
                 {event.locationlink && (
-                  <p><a href={event.locationlink} target="_blank" rel="noopener noreferrer">View on map</a></p>
+                  <p><a href={event.locationlink} target="_blank" rel="noopener noreferrer">View on map</a></p> 
                 )}
                 {event.eventlink ? (
                   <p><a href={event.eventlink} target="_blank" rel="noopener noreferrer">More Info</a></p>
