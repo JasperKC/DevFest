@@ -50,7 +50,12 @@ body {
   display: block; /* Ensure it's block-level */
   color: inherit; /* Inherit text color */
 }
-
+#dining-widget-container {
+  max-height: 400px; /* Set max height to display 5 items */
+  overflow-y: auto; /* Enable vertical scrolling */
+  display: block; /* Ensure it's block-level */
+  color: inherit; /* Inherit text color */
+}
 /* Styling for individual event list items */
 #event-widget-container li {
   list-style: none; /* Remove list bullets */
