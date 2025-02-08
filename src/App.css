@@ -51,7 +51,6 @@ body {
 
 /* Styling for individual event list items */
 #event-widget-container li {
-  height: 50px; /* Set height for each event */
   list-style: none; /* Remove list bullets */
   padding: 5px; /* Add some padding around each item */
 }
