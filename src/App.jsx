@@ -23,9 +23,9 @@ const App = () => {
         </div>
 
         {/* News Widget */}
-        <div className="widget-container">
+        {/* <div className="widget-container">
           <News />
-        </div>
+        </div> */}
       </div>
 
       <footer className="footer">
