@@ -27,16 +27,23 @@ setInterval(() => {
 // **Serve the latest dining data**
 app.get("/dining", async (req, res) => {
   console.log("🔄 Fetching fresh dining data...");
-  
-  await scrapeDiningHalls(); // Run the scraper before responding
-  
-  fs.readFile("diningMenus.json", "utf8", (err, data) => {
-    if (err) {
-      console.error("❌ Error reading JSON file:", err);
-      return res.status(500).json({ error: "Failed to load menu data" });
-    }
-    res.json(JSON.parse(data));
-  });
+
+  try {
+    await scrapeDiningHalls(); // Ensure the scraper runs before serving
+
+    // Read the file *fresh* instead of relying on a cached copy
+    fs.readFile("diningMenus.json", "utf8", (err, data) => {
+      if (err) {
+        console.error("❌ Error reading JSON file:", err);
+        return res.status(500).json({ error: "Failed to load menu data" });
+      }
+      res.setHeader("Cache-Control", "no-store"); // Prevent browser caching
+      res.json(JSON.parse(data));
+    });
+  } catch (error) {
+    console.error("❌ Error running scraper:", error);
+    res.status(500).json({ error: "Failed to update menu data" });
+  }
 });
 
 // **Serve the latest news data**
