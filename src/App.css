@@ -135,8 +135,8 @@ body, html {
 
 #lion {
   position: absolute;
-  top: 5%;
-  left: 60%;
+  top: 15%;
+  left: 40%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
@@ -171,6 +171,8 @@ body, html {
   transition: transform 0.2s linear;
   animation: bounce 1s infinite alternate;
 }
+
+
 
 @keyframes bounce {
   0% { transform: translateY(0px); }
