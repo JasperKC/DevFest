@@ -29,31 +29,11 @@ body {
   justify-content: center;
 }
 
-/* Header Styling - Weather Icon */
+/* Header Styling */
 .header {
-  display: flex; /* Use flexbox for header elements */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center horizontally */
-  margin-bottom: 30px;
-  margin-top: 40px;
-}
-
-.weather-icon-container {
-  width: 50px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
-  margin-bottom: 10px; /* Space between icon and title */
-  border-radius: 50%; /* Make it circular (optional) */
-  overflow: hidden; /* Hide content if it overflows */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0064b5; /* Or any color you like */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-}
-
-.weather-icon-container > * { /* Style the direct child of the container */
-  width: 100%;
-  height: 100%;
+  text-align: center;
+  margin-bottom: 30px; /* Increased margin-bottom */
+  margin-top: 40px; /* Added more space above the header */
 }
 
 .header h1 {
@@ -68,40 +48,38 @@ body {
   color: #555;
 }
 
-/* Content Container - Grid Layout */
+/* Centered Grid Layout */
 .content-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-columns: 1fr;
   gap: 20px;
   width: 100%;
-  max-width: 1200px; /* Adjust as needed */
-  justify-items: center; /* Center widgets within grid cells */
-  align-items: start; /* Align items to the top of the grid cells */
+  max-width: 900px; /* Keeps layout centered */
+  justify-items: center;
 }
 
-/* Media Query for smaller screens (stack widgets vertically) */
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
+@media (min-width: 768px) {
   .content-container {
-    grid-template-columns: 1fr; /* Single column layout */
-    gap: 20px; /* Maintain gap between stacked widgets */
+    grid-template-columns: repeat(2, 1fr); /* Weather & Events side-by-side */
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    grid-template-columns: repeat(3, 1fr); /* 3-column layout */
   }
 }
 
 /* Widget Styling */
 .widget-container {
-  width: 100%; /* Occupy full width of grid cell */
-  max-width: none; /* Remove max-width restriction */
+  width: 100%;
+  max-width: 400px; /* Keeps widgets evenly spaced */
   padding: 20px;
   background-color: #0064b5;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
-  display: flex; /* Use flexbox for layout within the widget */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center horizontally */
-  max-height: 600px; /* Set a maximum height for the widget */
-  overflow: hidden; /* Ensure content doesn't overflow (especially for non-scrollable widgets) */
 }
 
 /* Hover Effect */
@@ -115,19 +93,11 @@ body {
 #event-widget-container,
 #dining-widget-container,
 #news-widget-container {
-  max-height: 400px; /* Set a maximum height for scrollable content */
+  max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
   scrollbar-width: thin; /* Keeps it minimal */
   scrollbar-color: transparent transparent; /* Hidden by default */
-  width: 100%; /* Ensure scrollable widgets take full width */
-  flex-grow: 1; /* Allow scrollable content to expand */
-}
-
-/* Weather Widget - Ensure it takes full height */
-.weather-widget { /* Add a class to your Weather widget's container */
-  width: 100%;
-  flex-grow: 1; /* Allow weather content to expand to fill available space */
 }
 
 /* Footer */
