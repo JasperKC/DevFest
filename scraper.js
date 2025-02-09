@@ -4,9 +4,16 @@ import fs from "fs";
 const DINING_URL = "https://dining.columbia.edu/";
 
 const scrapeDiningHalls = async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  console.log("⏳ Launching Puppeteer...");
+
+  const browser = await puppeteer.launch({
+    headless: true, 
+    args: ["--no-sandbox", "--disable-setuid-sandbox"] // Render requires this
+  });
+
   const page = await browser.newPage();
-  await page.goto(DINING_URL, { waitUntil: "networkidle2" });
+  await page.goto("https://dining.columbia.edu/", { waitUntil: "networkidle2" });
+
 
   // Get the list of open dining halls
   const diningHalls = await page.evaluate(() => {
