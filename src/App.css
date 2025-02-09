@@ -156,7 +156,7 @@ body, html {
   background-image: url('https://png.pngtree.com/png-clipart/20241009/original/pngtree-monitor-with-blank-screen-in-pixel-art-style-png-image_16252480.png');
   background-size: cover;
   transition: transform 0.2s linear;
-  animation: bounce 1s infinite alternate;
+  /* animation: bounce 1s infinite alternate; */
 }
 
 #strawberry {
