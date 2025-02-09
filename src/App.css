@@ -135,7 +135,7 @@ body, html {
 
 #lion {
   position: absolute;
-  top: 8.5%;
+  top: 8%;
   left: 60%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
