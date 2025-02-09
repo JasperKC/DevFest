@@ -83,44 +83,18 @@ body {
 .widget-container:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  scrollbar-color: grey;
 }
 
 /* Scrollable Widgets */
 #event-widget-container,
-#dining-widget-container {
+#dining-widget-container,
+#news-widget-container {
   max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
   scrollbar-width: thin; /* Keeps it minimal */
   scrollbar-color: transparent transparent; /* Hidden by default */
-}
-
-/* Custom Scrollbar (Hidden Until Scrolling) */
-#event-widget-container::-webkit-scrollbar,
-#dining-widget-container::-webkit-scrollbar {
-  width: 6px;
-  transition: opacity 0.3s ease-in-out;
-}
-
-/* Scrollbar Thumb (Default: Hidden) */
-#event-widget-container::-webkit-scrollbar-thumb,
-#dining-widget-container::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 10px;
-}
-
-/* Show scrollbar while actively scrolling */
-#event-widget-container:active::-webkit-scrollbar-thumb,
-#event-widget-container:hover::-webkit-scrollbar-thumb,
-#dining-widget-container:active::-webkit-scrollbar-thumb,
-#dining-widget-container:hover::-webkit-scrollbar-thumb {
-  background: #aaa;
-}
-
-/* Darker on active scroll */
-#event-widget-container::-webkit-scrollbar-thumb:hover,
-#dining-widget-container::-webkit-scrollbar-thumb:hover {
-  background: #777;
 }
 
 /* Footer */
