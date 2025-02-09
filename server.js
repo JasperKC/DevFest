@@ -1,7 +1,6 @@
 import express from "express";
-import cors from "cors";
 import fs from "fs";
-import { scrapeDiningHalls } from "./scraper.js";
+import cors from "cors";
 import cron from "node-cron";
 import { exec } from "child_process";
 
@@ -10,22 +9,25 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
-// **Run scraper immediately when the server starts**
-console.log("⏳ Running initial dining menu scrape...");
-scrapeDiningHalls().then(() => {
-  console.log("✅ Initial dining menu scrape complete!");
-});
-
-// **Serve the latest dining data (without waiting for Puppeteer)**
-app.get("/dining", async (req, res) => {
-  console.log("🔄 Fetching latest dining data...");
-
+// **Serve the latest dining data**
+app.get("/dining", (req, res) => {
+  console.log("⏳ Loading latest dining menu...");
   fs.readFile("diningMenus.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading JSON file:", err);
-      return res.status(500).json({ error: "Failed to load menu data" });
+      return res.status(500).json({ error: "Dining menu data not available. Please try again later." });
     }
-    res.setHeader("Cache-Control", "no-store"); // Prevent browser caching
+    res.json(JSON.parse(data));
+  });
+});
+
+// **Serve the latest news data**
+app.get("/news", (req, res) => {
+  fs.readFile("news.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ Error reading news JSON file:", err);
+      return res.status(500).json({ error: "News data not available. Please try again later." });
+    }
     res.json(JSON.parse(data));
   });
 });
@@ -45,7 +47,7 @@ cron.schedule("0 7 * * *", () => {
   });
 });
 
-// **Start the server**
+// **Start Server**
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
