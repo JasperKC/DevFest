@@ -22,7 +22,7 @@ body {
   padding: 20px;
   min-height: 100vh;
   width: 100%;
-  max-width: 1200px; /* Keeps content centered */
+  max-width: 1400px; /* Increased max-width for a wider layout */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,16 +32,19 @@ body {
 /* Header Styling */
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Increased margin-bottom */
+  margin-top: 40px; /* Added more space above the header */
 }
 
 .header h1 {
-  font-size: 2.5rem;
+  font-size: 3rem; /* Increased font size for a bigger header */
+  font-family: 'Helvetica Neue', sans-serif; /* Improved font choice */
   color: #003366;
 }
 
 .header p {
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Increased font size for better readability */
+  font-family: 'Helvetica Neue', sans-serif;
   color: #555;
 }
 
