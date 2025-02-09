@@ -63,10 +63,10 @@ body, html {
 }
 
 .weather-container {
-  position: absolute;
+  position: sticky;
   top: 35px;
-  right: 30px;
-  max-width: 200px;
+  right: 50px;
+  max-width: 100px;
   padding: 10px;
   background-color: #dfd431;
   border-radius: 10px;
