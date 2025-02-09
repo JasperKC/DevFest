@@ -38,7 +38,7 @@ const App = () => {
       </div>
 
       <footer className="footer">
-        <p>{new Date().getFullYear()} Columbia University</p>
+        {/* <p>{new Date().getFullYear()} Columbia University</p> */}
       </footer>
     </div>
   );
