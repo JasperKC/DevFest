@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Inter', sans-serif;
 }
 
 /* App Container */
@@ -37,14 +38,14 @@ body {
 }
 
 .header h1 {
-  font-size: 3rem; /* Increased font size for a bigger header */
-  font-family: 'Helvetica Neue', sans-serif; /* Improved font choice */
+  font-size: 2.5rem;
   color: #003366;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .header p {
-  font-size: 1.5rem; /* Increased font size for better readability */
-  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.2rem;
   color: #555;
 }
 
@@ -80,13 +81,19 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 /* Hover Effect */
 .widget-container:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-  scrollbar-color: grey;
+}
+
+.widget-container h2{
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 /* Scrollable Widgets */
