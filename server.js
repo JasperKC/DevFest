@@ -1,21 +1,33 @@
 import express from "express";
-import fs from "fs";
 import cors from "cors";
-import cron from "node-cron";
-import { exec } from "child_process";
+import fs from "fs";
+import { scrapeDiningHalls } from "./scraper.js"; // Ensure you import the scraper
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
+// **Run scraper immediately when server starts**
+console.log("⏳ Running initial dining menu scrape...");
+scrapeDiningHalls().then(() => {
+  console.log("✅ Initial dining menu scrape complete!");
+});
+
+// **Set up an interval to refresh dining data every 10 minutes**
+setInterval(() => {
+  console.log("🔄 Running scheduled dining menu update...");
+  scrapeDiningHalls().then(() => {
+    console.log("✅ Scheduled dining menu update complete!");
+  });
+}, 10 * 60 * 1000);
+
 // **Serve the latest dining data**
 app.get("/dining", (req, res) => {
-  console.log("⏳ Loading latest dining menu...");
   fs.readFile("diningMenus.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading JSON file:", err);
-      return res.status(500).json({ error: "Dining menu data not available. Please try again later." });
+      return res.status(500).json({ error: "Failed to load menu data" });
     }
     res.json(JSON.parse(data));
   });
@@ -47,7 +59,7 @@ cron.schedule("0 7 * * *", () => {
   });
 });
 
-// **Start Server**
+// **Start the server**
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
