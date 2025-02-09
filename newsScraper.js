@@ -17,7 +17,7 @@ const scrapeNews = async () => {
       let articles = [];
       document
         .querySelectorAll(
-          ".CDSBigArticle__BigArticleContainer-sc-lxcqafz-1, .CDSMediumArticle__MediumArticleContainer-sc-ztv0od-0"
+          ".CDSBigArticle__BigArticleContainer-sc-1xcgafz-1, .CDSMediumArticle__MediumArticleContainer-sc-ztv0od-0"
         )
         .forEach((article) => {
           let headline =
@@ -28,7 +28,7 @@ const scrapeNews = async () => {
           let category =
             article
               .querySelector(".CDSArticleInfo__Section-sc-7lnjft-0")
-              ?.innerText.trim() || "General";
+              ?.innerText.trim() || "";
 
           articles.push({ headline, link, category });
         });
