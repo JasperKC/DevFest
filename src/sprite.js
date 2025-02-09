@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(sprite);
   }
 
-  let velocityX = 5;
-  let velocityY = 5;
+  let velocityX = 500;
+  let velocityY = 500;
   let posX = window.innerWidth / 2; // Start at center
   let posY = window.innerHeight / 2;
 
