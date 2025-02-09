@@ -17,18 +17,18 @@ const Events = () => {
     script2.onload = () => {
       const bwJsWidgetOptions = {
         title: "🎟️ Upcoming Events",
-        showTitle: false, // We will handle the title separately
-        displayDescription: true,
+        showTitle: true,
+        displayDescription: false,
         calendarServer: "https://events.columbia.edu",
         resourcesRoot:
           "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme",
-        limitList: true,
-        limit: 5, // Show only 5 events
+        limitList: false,
+        limit: 5,
         displayStartDateOnlyInList: true,
         displayTimeInList: true,
-        displayLocationInList: true,
+        displayLocationInList: false,
         listMode: "byTitle",
-        displayInNewWindow: true,
+        displayInNewWindow: false,
       };
       insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
     };
@@ -39,12 +39,7 @@ const Events = () => {
     };
   }, []);
 
-  return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">🎟️ Upcoming Events</h2>
-      <div id="bwOutput" className="text-gray-700"></div>
-    </div>
-  );
+  return <div id="bwOutput"></div>;
 };
 
 export default Events;
