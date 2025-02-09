@@ -19,7 +19,6 @@ const News = () => {
 
   return (
     <div style={{
-      backgroundColor: "#1E3A8A",
       padding: "20px",
       borderRadius: "10px",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
@@ -43,7 +42,7 @@ const News = () => {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {news.map((article, index) => (
-            <div key={index} style={{ paddingBottom: "12px" }}>
+            <div key={index} style={{ borderBottom: "1px solid #3B82F6", paddingBottom: "12px" }}>
               <a
                 href={article.link}
                 target="_blank"
