@@ -122,8 +122,8 @@ body, html {
 /* Sprites */
 #sprite {
   position: absolute;
-  top: 12%;
-  left: 8%;
+  top: 13%;
+  left: 3%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 50px;
   height: 50px;
@@ -138,9 +138,9 @@ body, html {
   top: 10%;
   left: 10%;
   transform: translate(-50%, -50%); /* Only for initial centering */
-  width: 50px;
-  height: 50px;
-  background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vexels.com%2Fpng-svg%2Fpreview%2F140693%2Flion-cartoon&psig=AOvVaw1jiMZlTtPB-7Ys_mzqkeL1&ust=1739167872013000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCPq6z3tYsDFQAAAAAdAAAAABAR');
+  width: 70px;
+  height: 70px;
+  background-image: url('https://images.vexels.com/media/users/3/140693/isolated/preview/4ab92e6350ef4e1b84e9a98c8472545c-lion-cartoon.png');
   background-size: cover;
   transition: transform 0.2s linear;
   animation: bounce 1s infinite alternate;
