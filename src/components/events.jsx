@@ -36,8 +36,9 @@ const Events = () => {
       setTimeout(() => {
         const links = document.querySelectorAll("#bwOutput a");
         links.forEach((link) => {
-          link.style.color = "#ffffff"; // Brighten link color
+          link.style.color = "#FFD700"; // yellow link color
           link.style.fontWeight = "600"; // Make bolder
+          link.style.textDecoration = "underline";
         });
 
         const eventItems = document.querySelectorAll("#bwOutput li");
