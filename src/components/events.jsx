@@ -17,7 +17,7 @@ const Events = () => {
     script2.onload = () => {
       const bwJsWidgetOptions = {
         title: "🎟️ Upcoming Events",
-        showTitle: false, // Hide default title since we add our own
+        showTitle: false,
         displayDescription: false,
         calendarServer: "https://events.columbia.edu",
         resourcesRoot:
@@ -31,6 +31,20 @@ const Events = () => {
         displayInNewWindow: true,
       };
       insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
+
+      // Apply styles to fix text color
+      setTimeout(() => {
+        const links = document.querySelectorAll("#bwOutput a");
+        links.forEach((link) => {
+          link.style.color = "#ffffff"; // Brighten link color
+          link.style.fontWeight = "600"; // Make bolder
+        });
+
+        const eventItems = document.querySelectorAll("#bwOutput li");
+        eventItems.forEach((item) => {
+          item.style.marginBottom = "1rem"; // Add spacing between events
+        });
+      }, 500);
     };
 
     return () => {
@@ -40,9 +54,11 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">🎟️ Upcoming Events</h2>
-      <div id="bwOutput" className="text-gray-700"></div>
+    <div className="bg-[#2357a4] p-6 rounded-lg shadow-lg text-white">
+      <h2 className="text-2xl font-bold mb-4 flex items-center">
+        <span className="mr-2">🎟️</span> Upcoming Events
+      </h2>
+      <div id="bwOutput" className="text-white"></div>
     </div>
   );
 };
