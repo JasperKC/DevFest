@@ -64,11 +64,11 @@ body, html {
 
 .weather-container {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 30px;
   max-width: 200px;
   padding: 10px;
-  background-color: #e58f1e;
+  background-color: #f93c4f;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   color: white;
