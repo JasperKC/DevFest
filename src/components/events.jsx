@@ -43,6 +43,7 @@ const Events = () => {
         const eventItems = document.querySelectorAll("#bwOutput li");
         eventItems.forEach((item) => {
           item.style.marginBottom = "1rem"; // Add spacing between events
+          item.style.listStyleType = "none"; // Remove bullet points
         });
       }, 500);
     };
