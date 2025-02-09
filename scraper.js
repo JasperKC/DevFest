@@ -4,7 +4,6 @@ import fs from "fs";
 const scrapeDiningHalls = async () => {
   const browser = await puppeteer.launch({
     headless: "new",
-    executablePath: "/usr/bin/chromium", // Manually specify the Chromium path
     args: ["--no-sandbox", "--disable-setuid-sandbox"] // Required for Render
   });
 
