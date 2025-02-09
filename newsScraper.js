@@ -53,7 +53,7 @@ const scrapeNews = async () => {
         let headline =
           article.querySelector("h2")?.innerText.trim() || "No headline"; // h2 is a direct child of <a>
         let link = article.href || "#"; // The href is directly on the <a> tag
-        articles.push({ headline, link, category: "General" });
+        articles.push({ headline, link, category: "GENERAL" });
       });
       return articles;
     });
