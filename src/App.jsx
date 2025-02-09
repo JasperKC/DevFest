@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css"; // Ensure your custom CSS is in this file
+import "./App.css";
 import Weather from "./components/weather";
 import Events from "./components/events";
 import Dining from "./components/dining";
@@ -9,31 +9,23 @@ const App = () => {
   return (
     <div className="app-container">
       <header className="header">
+        <div className="weather-icon-container"> {/* Container for smaller weather icon */}
+          <Weather isIcon={true} /> {/* Pass prop to Weather component */}
+        </div>
         <h1>LionPulse</h1>
         <p>Stay up to date with what's happening around Columbia Campus</p>
       </header>
 
       <div className="content-container">
-        {/* Weather Widget */}
         <div className="widget-container">
-          <Weather />
-        </div>
-
-        {/* Events Widget (Scrollable) */}
-        <div className="widget-container" id="event-widget-container">
           <Events />
         </div>
-
-        {/* Dining Widget (Scrollable) */}
-        <div className="widget-container" id="dining-widget-container">
+        <div className="widget-container">
           <Dining />
         </div>
-
-        {/* News Widget (Scrollable) */}
-        <div className="widget-container" id="news-widget-container">
+        <div className="widget-container">
           <News />
         </div>
-
       </div>
 
       <footer className="footer">
