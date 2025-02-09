@@ -28,7 +28,7 @@ const scrapeNews = async () => {
           let category =
             article
               .querySelector(".CDSArticleInfo__Section-sc-7lnjft-0")
-              ?.innerText.trim() || "";
+              ?.innerText.trim() || "GENERAL";
 
           articles.push({ headline, link, category });
         });
@@ -48,12 +48,12 @@ const scrapeNews = async () => {
 
     let bulletinNews = await page.evaluate(() => {
       let articles = [];
-      document.querySelectorAll("._HhgCcE").forEach((article) => {
+      document.querySelectorAll("a.o16KGI").forEach((article) => {
+        // Select <a> tags with class "o16KGI"
         let headline =
-          article.querySelector("h2")?.innerText.trim() || "No headline";
-        let link = article.querySelector("a")?.href || "#";
-
-        articles.push({ headline, link, category: "General" }); // No category found in the screenshot
+          article.querySelector("h2")?.innerText.trim() || "No headline"; // h2 is a direct child of <a>
+        let link = article.href || "#"; // The href is directly on the <a> tag
+        articles.push({ headline, link, category: "General" });
       });
       return articles;
     });
