@@ -1,30 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let sprite = document.getElementById("sprite");
+  const sprite = document.getElementById("sprite");
 
-  // If sprite element is missing, create it dynamically
-  if (!sprite) {
-    sprite = document.createElement("div");
-    sprite.id = "sprite";
-    document.body.appendChild(sprite);
-  }
-
-  let velocityX = 500;
-  let velocityY = 500;
-  let posX = window.innerWidth / 2; // Start at center
-  let posY = window.innerHeight / 2;
+  let velocityX = 10; // Increased speed
+  let velocityY = 10; // Increased speed
 
   function moveSprite() {
-    let maxX = window.innerWidth - sprite.offsetWidth;
-    let maxY = window.innerHeight - sprite.offsetHeight;
+    let rect = sprite.getBoundingClientRect();
+    let maxX = window.innerWidth - rect.width;
+    let maxY = window.innerHeight - rect.height;
 
-    posX += velocityX;
-    posY += velocityY;
+    let newX = rect.left + velocityX;
+    let newY = rect.top + velocityY;
 
-    if (posX <= 0 || posX >= maxX) velocityX *= -1;
-    if (posY <= 0 || posY >= maxY) velocityY *= -1;
+    if (newX <= 0 || newX >= maxX) velocityX *= -1;
+    if (newY <= 0 || newY >= maxY) velocityY *= -1;
 
-    sprite.style.transform = `translate(${posX}px, ${posY}px)`;
+    sprite.style.transform = `translate(${newX}px, ${newY}px)`;
   }
 
-  setInterval(moveSprite, 50);
+  document.addEventListener("mousemove", function (event) {
+    let rect = sprite.getBoundingClientRect();
+    let spriteX = rect.left + rect.width / 2;
+    let spriteY = rect.top + rect.height / 2;
+
+    let deltaX = spriteX - event.clientX;
+    let deltaY = spriteY - event.clientY;
+
+    let distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+
+    if (distance < 150) {
+      // Increase sensitivity range
+      velocityX = (deltaX / distance) * 20; // Increase speed
+      velocityY = (deltaY / distance) * 20; // Increase speed
+    }
+  });
+
+  setInterval(moveSprite, 30); // Reduced interval for smoother movement
 });
