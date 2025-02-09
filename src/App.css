@@ -130,6 +130,12 @@ body, html {
   background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2ca7d49e-3365-4f63-8a32-93f421d8ba6f/d5d948m-6343a98a-7d26-48c7-9628-b50c57ab020c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJjYTdkNDllLTMzNjUtNGY2My04YTMyLTkzZjQyMWQ4YmE2ZlwvZDVkOTQ4bS02MzQzYTk4YS03ZDI2LTQ4YzctOTYyOC1iNTBjNTdhYjAyMGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.za0AU9eqtz7AXPs32xAbug0ChbOll_InknBuPBEWBh0'); /* Replace with actual sprite */
   background-size: cover;
   transition: transform 0.2s linear;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
 }
 
 /* Footer */
