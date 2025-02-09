@@ -30,11 +30,11 @@ const News = () => {
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-semibold text-blue-600 hover:underline"
+                className="text-xl font-bold text-white hover:underline"
               >
                 {article.headline}
               </a>
-              <p className="text-gray-500 text-sm">{article.category}</p>
+              <p className="text-sm text-gray-300">{article.category}</p>
             </div>
           ))}
         </div>
