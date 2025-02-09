@@ -75,6 +75,10 @@ body, html {
   text-align: center;
 }
 
+.weather-container h2 {
+  font-size: 1.2rem;
+}
+
 .widgets-grid {
   display: flex;
   justify-content: space-between;
