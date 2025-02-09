@@ -1,53 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 const Events = () => {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    fetch("https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=list-json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("🔍 Raw Event API Response:", data); // Debugging: log API response
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("❌ Error fetching events:", error);
-        setLoading(false);
-      });
+    const script1 = document.createElement("script");
+    script1.type = "text/javascript";
+    script1.src =
+      "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme/javascript/eventListWidget.js";
+    document.body.appendChild(script1);
+
+    const script2 = document.createElement("script");
+    script2.type = "text/javascript";
+    script2.src =
+      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=json&setappvar=objName(bwObject)&count=5";
+    document.body.appendChild(script2);
+
+    script2.onload = () => {
+      if (typeof insertBwEvents === "function") {
+        const bwJsWidgetOptions = {
+          title: "🎟️ Upcoming Events",
+          showTitle: true,
+          displayDescription: false,
+          calendarServer: "https://events.columbia.edu",
+          resourcesRoot:
+            "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme",
+          limitList: true,
+          limit: 5, // Show only 5 events
+          displayStartDateOnlyInList: true,
+          displayTimeInList: true,
+          displayLocationInList: true,
+          listMode: "byTitle",
+          displayInNewWindow: true,
+        };
+        insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
+      } else {
+        console.error("❌ insertBwEvents function not found.");
+      }
+    };
+
+    return () => {
+      document.body.removeChild(script1);
+      document.body.removeChild(script2);
+    };
   }, []);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">🎟️ Upcoming Events</h2>
-      {loading ? (
-        <p className="text-gray-600">Loading events...</p>
-      ) : (
-        <ul className="space-y-4">
-          {events.length > 0 ? (
-            events.map((event, index) => (
-              <li key={index} className="border-b pb-3">
-                <a
-                  href={event.link || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-semibold text-blue-600 hover:underline"
-                >
-                  {event.summary}
-                </a>
-                <p className="text-gray-500 text-sm">
-                  📅 {event.start.longdate} {event.start.time && `• 🕒 ${event.start.time}`}
-                </p>
-                {event.location && event.location.address && (
-                  <p className="text-gray-600 text-sm">📍 {event.location.address}</p>
-                )}
-              </li>
-            ))
-          ) : (
-            <p className="text-gray-500">No upcoming events found.</p>
-          )}
-        </ul>
-      )}
+      <div id="bwOutput" className="text-gray-700"></div>
     </div>
   );
 };
