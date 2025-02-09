@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const sprite = document.getElementById("sprite");
 
+  console.log("sprite js is working");
   let velocityX = 10; // Increased speed
   let velocityY = 10; // Increased speed
 
