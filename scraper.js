@@ -11,19 +11,14 @@ const scrapeDiningHalls = async () => {
   // Get the list of open dining halls
   const diningHalls = await page.evaluate(() => {
     let halls = [];
-    document
-      .querySelectorAll(".location.clearfix.dining-location.open")
-      .forEach((hall) => {
-        let name = hall.querySelector(".name a")?.innerText.trim() || "Unknown";
-        let link = hall.querySelector(".name a")?.href || "#";
-        let openTime =
-          hall.querySelector(".open-time")?.innerText.trim() ||
-          "No time listed";
-        let status =
-          hall.querySelector(".status")?.innerText.trim() || "Unknown status";
+    document.querySelectorAll(".location.clearfix.dining-location.open").forEach((hall) => {
+      let name = hall.querySelector(".name a")?.innerText.trim() || "Unknown";
+      let link = hall.querySelector(".name a")?.href || "#";
+      let openTime = hall.querySelector(".open-time")?.innerText.trim() || "No time listed";
+      let status = hall.querySelector(".status")?.innerText.trim() || "Unknown status";
 
-        halls.push({ name, link, openTime, status });
-      });
+      halls.push({ name, link, openTime, status });
+    });
     return halls;
   });
 
@@ -36,12 +31,10 @@ const scrapeDiningHalls = async () => {
     await menuPage.goto(hall.link, { waitUntil: "networkidle2" });
 
     // Ensure menu items are loaded
-    await menuPage
-      .waitForSelector(".meal-title.ng-binding", { timeout: 5000 })
-      .catch(() => {
-        console.log(`⚠️ No menu found for ${hall.name}`);
-        return;
-      });
+    await menuPage.waitForSelector(".meal-title.ng-binding", { timeout: 5000 }).catch(() => {
+      console.log(`⚠️ No menu found for ${hall.name}`);
+      return;
+    });
 
     // Extract menu items
     let menuItems = await menuPage.evaluate(() => {
@@ -65,4 +58,8 @@ const scrapeDiningHalls = async () => {
   await browser.close();
 };
 
+// **Run scraper immediately on startup**
 scrapeDiningHalls();
+
+// **Run scraper every 10 minutes**
+setInterval(scrapeDiningHalls, 10 * 60 * 1000);

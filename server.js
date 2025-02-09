@@ -9,29 +9,30 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
+// **Serve the latest dining data**
 app.get("/dining", (req, res) => {
   console.log("⏳ Loading latest dining menu...");
   fs.readFile("diningMenus.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading JSON file:", err);
-      return res.status(500).json({ error: "Failed to load menu data" });
+      return res.status(500).json({ error: "Dining menu data not available. Please try again later." });
     }
     res.json(JSON.parse(data));
   });
 });
 
-// Serve the news JSON
+// **Serve the latest news data**
 app.get("/news", (req, res) => {
   fs.readFile("news.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading news JSON file:", err);
-      return res.status(500).json({ error: "Failed to load news data" });
+      return res.status(500).json({ error: "News data not available. Please try again later." });
     }
     res.json(JSON.parse(data));
   });
 });
 
-// Run the news scraper daily at 7 AM
+// **Run the news scraper daily at 7 AM**
 cron.schedule("0 7 * * *", () => {
   console.log("⏳ Running daily news scrape...");
   exec("node newsScraper.js", (error, stdout, stderr) => {
@@ -46,6 +47,7 @@ cron.schedule("0 7 * * *", () => {
   });
 });
 
+// **Start Server**
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
