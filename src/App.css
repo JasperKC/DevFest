@@ -143,20 +143,20 @@ body, html {
   background-image: url('https://images.vexels.com/media/users/3/140693/isolated/preview/4ab92e6350ef4e1b84e9a98c8472545c-lion-cartoon.png');
   background-size: cover;
   transition: transform 0.2s linear;
-  animation: bounce 1s infinite alternate;
+  /* animation: bounce 1s infinite alternate; */
 }
 
 #computer {
   position: absolute;
   top: 80%;
-  left: 8%;
+  left: 5%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 100px;
   height: 100px;
   background-image: url('https://png.pngtree.com/png-clipart/20241009/original/pngtree-monitor-with-blank-screen-in-pixel-art-style-png-image_16252480.png');
   background-size: cover;
   transition: transform 0.2s linear;
-  animation: bounce 1s infinite alternate;
+  /* animation: bounce 1s infinite alternate; */
 }
 
 #strawberry {
