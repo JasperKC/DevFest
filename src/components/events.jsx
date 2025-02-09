@@ -16,7 +16,7 @@ const Events = () => {
 
     script2.onload = () => {
       const bwJsWidgetOptions = {
-        title: "Upcoming Events",
+        title: "🎟️ Upcoming Events",
         showTitle: true,
         displayDescription: false,
         calendarServer: "https://events.columbia.edu",
