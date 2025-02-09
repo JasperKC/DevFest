@@ -6,16 +6,23 @@ const Dining = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://devfest-npjn.onrender.com/dining")
-      .then((res) => res.json())
-      .then((data) => {
-        setDiningHalls(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching dining data:", error);
-        setLoading(false);
-      });
+    const fetchDiningData = () => {
+      fetch("https://devfest-npjn.onrender.com/dining")
+        .then((res) => res.json())
+        .then((data) => {
+          setDiningHalls(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching dining data:", error);
+          setLoading(false);
+        });
+    };
+  
+    fetchDiningData(); // Fetch immediately
+    const interval = setInterval(fetchDiningData, 60000); // Refresh every 60s
+  
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return (
