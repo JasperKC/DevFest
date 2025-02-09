@@ -8,96 +8,93 @@
 body {
   height: 100%;
   width: 100%;
-  background-color: #9BDDFF; /* Default background */
+  background-color: #9BDDFF;
   color: #333333;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Arial', sans-serif;
 }
 
 /* App Container */
 .app-container {
-  font-family: 'Arial', sans-serif;
   padding: 20px;
   min-height: 100vh;
   width: 100%;
-  max-width: 1400px; /* Increased max-width for a wider layout */
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 /* Header Styling */
 .header {
   text-align: center;
-  margin-bottom: 30px; /* Increased margin-bottom */
-  margin-top: 40px; /* Added more space above the header */
+  margin-bottom: 30px;
+  margin-top: 40px;
 }
 
 .header h1 {
-  font-size: 3rem; /* Increased font size for a bigger header */
-  font-family: 'Helvetica Neue', sans-serif; /* Improved font choice */
+  font-size: 2.5rem;
+  font-family: 'Helvetica Neue', sans-serif;
   color: #003366;
 }
 
 .header p {
-  font-size: 1.5rem; /* Increased font size for better readability */
-  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.2rem;
   color: #555;
 }
 
-/* Centered Grid Layout */
+/* Layout Adjustments */
 .content-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
-  max-width: 900px; /* Keeps layout centered */
-  justify-items: center;
+  max-width: 900px;
+  gap: 20px;
 }
 
-@media (min-width: 768px) {
-  .content-container {
-    grid-template-columns: repeat(2, 1fr); /* Weather & Events side-by-side */
-  }
+.weather-container {
+  flex: 1;
+  max-width: 300px;
+  padding: 15px;
+  background-color: #004c8c;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
 }
 
-@media (min-width: 1024px) {
-  .content-container {
-    grid-template-columns: repeat(3, 1fr); /* 3-column layout */
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 2;
+}
+
+@media (max-width: 768px) {
+  .widgets-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 /* Widget Styling */
 .widget-container {
-  width: 100%;
-  max-width: 400px; /* Keeps widgets evenly spaced */
   padding: 20px;
   background-color: #0064b5;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-/* Hover Effect */
 .widget-container:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-  scrollbar-color: grey;
-}
-
-/* Scrollable Widgets */
-#event-widget-container,
-#dining-widget-container,
-#news-widget-container {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: thin; /* Keeps it minimal */
-  scrollbar-color: transparent transparent; /* Hidden by default */
 }
 
 /* Footer */

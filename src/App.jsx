@@ -14,26 +14,27 @@ const App = () => {
       </header>
 
       <div className="content-container">
-        {/* Weather Widget */}
-        <div className="widget-container">
+        {/* Weather Widget - Moved to top right */}
+        <div className="weather-container">
           <Weather />
         </div>
 
-        {/* Events Widget (Scrollable) */}
-        <div className="widget-container" id="event-widget-container">
-          <Events />
-        </div>
+        <div className="widgets-grid">
+          {/* Events Widget (Scrollable) */}
+          <div className="widget-container" id="event-widget-container">
+            <Events />
+          </div>
 
-        {/* Dining Widget (Scrollable) */}
-        <div className="widget-container" id="dining-widget-container">
-          <Dining />
-        </div>
+          {/* Dining Widget (Scrollable) */}
+          <div className="widget-container" id="dining-widget-container">
+            <Dining />
+          </div>
 
-        {/* News Widget (Scrollable) */}
-        <div className="widget-container" id="news-widget-container">
-          <News />
+          {/* News Widget (Scrollable) */}
+          <div className="widget-container" id="news-widget-container">
+            <News />
+          </div>
         </div>
-
       </div>
 
       <footer className="footer">
