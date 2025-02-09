@@ -1,45 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const script1 = document.createElement("script");
-    script1.type = "text/javascript";
-    script1.src =
-      "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme/javascript/eventListWidget.js";
-    document.body.appendChild(script1);
-
-    const script2 = document.createElement("script");
-    script2.type = "text/javascript";
-    script2.src =
-      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(((vpath=%22/public/aliases/Type/Career%20Fair%22)%20or%20(vpath=%22/public/aliases/Type/Open%20House%22)%20or%20(vpath=%22/public/aliases/Type/Panel%22)%20or%20(vpath=%22/public/aliases/Type/Seminar%22)%20or%20(vpath=%22/public/aliases/Type/Sports%22)%20or%20(vpath=%22/public/aliases/Type/Theater%22)%20or%20(vpath=%22/public/aliases/Type/Workshop%22)%20or%20(vpath=%22/public/aliases/Type/Discussion%22)%20or%20(vpath=%22/public/aliases/Type/Cultural%22)%20or%20(vpath=%22/public/aliases/Type/Conference%22)))%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&setappvar=objName(bwObject)&count=200";
-    document.body.appendChild(script2);
-
-    script2.onload = () => {
-      const bwJsWidgetOptions = {
-        title: "🎟️ Upcoming Events",
-        showTitle: true,
-        displayDescription: false,
-        calendarServer: "https://events.columbia.edu",
-        resourcesRoot:
-          "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme",
-        limitList: false,
-        limit: 5,
-        displayStartDateOnlyInList: true,
-        displayTimeInList: true,
-        displayLocationInList: false,
-        listMode: "byTitle",
-        displayInNewWindow: false,
-      };
-      insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
-    };
-
-    return () => {
-      document.body.removeChild(script1);
-      document.body.removeChild(script2);
-    };
+    fetch("https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=list-json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.bwObject) {
+          setEvents(data.bwObject.slice(0, 5)); // Show only the latest 5 events
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        setLoading(false);
+      });
   }, []);
 
-  return <div id="bwOutput"></div>;
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">🎟️ Upcoming Events</h2>
+      {loading ? (
+        <p className="text-gray-600">Loading events...</p>
+      ) : (
+        <ul className="space-y-3">
+          {events.length > 0 ? (
+            events.map((event, index) => (
+              <li key={index} className="border-b pb-2">
+                <a
+                  href={event.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-semibold text-blue-600 hover:underline"
+                >
+                  {event.summary}
+                </a>
+                <p className="text-gray-500 text-sm">{event.dtstart}</p>
+              </li>
+            ))
+          ) : (
+            <p className="text-gray-500">No upcoming events found.</p>
+          )}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default Events;
