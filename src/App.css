@@ -188,7 +188,7 @@ body, html {
 #cloud {
   position: absolute;
   top: 25%;
-  left: 97%;
+  left: 97.5%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 125px;
   height: 70px;
