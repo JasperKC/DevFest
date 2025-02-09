@@ -20,6 +20,22 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/events", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=json"
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch events: ${response.statusText}`);
+    }
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("❌ Error fetching events:", error);
+    res.status(500).json({ error: "Failed to load events data" });
+  }
+});
+
 // Serve the news JSON
 app.get("/news", (req, res) => {
   fs.readFile("news.json", "utf8", (err, data) => {
