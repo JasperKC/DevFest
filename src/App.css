@@ -8,7 +8,7 @@
 body {
   height: 100%;
   width: 100%;
-  background-color: #9BDDFF; /* Default background */
+  background-color: #9BDDFF;
   color: #333333;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ body {
   padding: 20px;
   min-height: 100vh;
   width: 100%;
-  max-width: 1400px; /* Increased max-width for a wider layout */
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,39 +31,39 @@ body {
 
 /* Header Styling - Weather Icon */
 .header {
-  display: flex; /* Use flexbox for header elements */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 30px;
   margin-top: 40px;
 }
 
 .weather-icon-container {
-  width: 50px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
-  margin-bottom: 10px; /* Space between icon and title */
-  border-radius: 50%; /* Make it circular (optional) */
-  overflow: hidden; /* Hide content if it overflows */
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0064b5; /* Or any color you like */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  background-color: #0064b5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.weather-icon-container > * { /* Style the direct child of the container */
+.weather-icon-container > * {
   width: 100%;
   height: 100%;
 }
 
 .header h1 {
-  font-size: 3rem; /* Increased font size for a bigger header */
-  font-family: 'Helvetica Neue', sans-serif; /* Improved font choice */
+  font-size: 3rem;
+  font-family: 'Helvetica Neue', sans-serif;
   color: #003366;
 }
 
 .header p {
-  font-size: 1.5rem; /* Increased font size for better readability */
+  font-size: 1.5rem;
   font-family: 'Helvetica Neue', sans-serif;
   color: #555;
 }
@@ -71,37 +71,37 @@ body {
 /* Content Container - Grid Layout */
 .content-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
-  max-width: 1200px; /* Adjust as needed */
-  justify-items: center; /* Center widgets within grid cells */
+  max-width: 1200px;
+  justify-items: center;
   align-items: start; /* Align items to the top of the grid cells */
 }
 
 /* Media Query for smaller screens (stack widgets vertically) */
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
+@media (max-width: 768px) {
   .content-container {
-    grid-template-columns: 1fr; /* Single column layout */
-    gap: 20px; /* Maintain gap between stacked widgets */
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
 /* Widget Styling */
 .widget-container {
-  width: 100%; /* Occupy full width of grid cell */
-  max-width: none; /* Remove max-width restriction */
+  width: 100%;
+  max-width: none;
   padding: 20px;
   background-color: #0064b5;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
-  display: flex; /* Use flexbox for layout within the widget */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center horizontally */
-  max-height: 600px; /* Set a maximum height for the widget */
-  overflow: hidden; /* Ensure content doesn't overflow (especially for non-scrollable widgets) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 600px;
+  overflow: hidden;
 }
 
 /* Hover Effect */
@@ -111,23 +111,59 @@ body {
   scrollbar-color: grey;
 }
 
+
 /* Scrollable Widgets */
 #event-widget-container,
 #dining-widget-container,
 #news-widget-container {
-  max-height: 400px; /* Set a maximum height for scrollable content */
   overflow-y: auto;
   padding-right: 10px;
-  scrollbar-width: thin; /* Keeps it minimal */
-  scrollbar-color: transparent transparent; /* Hidden by default */
-  width: 100%; /* Ensure scrollable widgets take full width */
-  flex-grow: 1; /* Allow scrollable content to expand */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  width: 100%;
+  flex-grow: 1; /* Allow content to grow within the scrollable area */
+  display: flex; /* Ensure flexbox for vertical stacking */
+  flex-direction: column; /* Stack content vertically */
 }
 
-/* Weather Widget - Ensure it takes full height */
-.weather-widget { /* Add a class to your Weather widget's container */
+/* Weather Widget */
+.weather-widget {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  flex-grow: 1; /* Allow weather content to expand to fill available space */
+  height: 100%; /* Important: Ensure the weather widget takes full height */
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  width: 100%;
+}
+
+.weather-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.weather-info {
+  text-align: right;
+}
+
+.temperature {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.conditions {
+  font-size: 1rem;
+}
+
+.location {
+  margin-top: auto;
+  text-align: center;
+  padding: 10px;
 }
 
 /* Footer */
