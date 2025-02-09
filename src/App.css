@@ -161,8 +161,8 @@ body, html {
 
 #strawberry {
   position: absolute;
-  top: 85%;
-  left: 80%;
+  top: 84%;
+  left: 48%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
@@ -174,8 +174,8 @@ body, html {
 
 #raspberry {
   position: absolute;
-  top: 85%;
-  left: 82%;
+  top: 86%;
+  left: 52%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
@@ -187,10 +187,10 @@ body, html {
 
 #cloud {
   position: absolute;
-  top: 85%;
-  left: 50%;
+  top: 15%;
+  left: 95%;
   transform: translate(-50%, -50%); /* Only for initial centering */
-  width: 70px;
+  width: 100px;
   height: 70px;
   background-image: url('https://static.vecteezy.com/system/resources/thumbnails/013/442/187/small/illustration-of-pixel-cloud-icon-png.png');
   background-size: cover;
