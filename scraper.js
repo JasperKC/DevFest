@@ -4,13 +4,7 @@ import fs from "fs";
 const DINING_URL = "https://dining.columbia.edu/";
 
 const scrapeDiningHalls = async () => {
-  console.log("⏳ Launching Puppeteer...");
-
-  const browser = await puppeteer.launch({
-    headless: "new", 
-    args: ["--no-sandbox", "--disable-setuid-sandbox"] // Required for Render
-  });
-
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(DINING_URL, { waitUntil: "networkidle2" });
 
@@ -22,8 +16,11 @@ const scrapeDiningHalls = async () => {
       .forEach((hall) => {
         let name = hall.querySelector(".name a")?.innerText.trim() || "Unknown";
         let link = hall.querySelector(".name a")?.href || "#";
-        let openTime = hall.querySelector(".open-time")?.innerText.trim() || "No time listed";
-        let status = hall.querySelector(".status")?.innerText.trim() || "Unknown status";
+        let openTime =
+          hall.querySelector(".open-time")?.innerText.trim() ||
+          "No time listed";
+        let status =
+          hall.querySelector(".status")?.innerText.trim() || "Unknown status";
 
         halls.push({ name, link, openTime, status });
       });
@@ -32,11 +29,19 @@ const scrapeDiningHalls = async () => {
 
   console.log("📍 Found Dining Halls:", diningHalls);
 
-  // Visit each dining hall page to scrape the menu
+  // Now visit each dining hall page to scrape the menu
   for (let hall of diningHalls) {
     console.log(`🔎 Scraping menu for: ${hall.name}`);
     const menuPage = await browser.newPage();
     await menuPage.goto(hall.link, { waitUntil: "networkidle2" });
+
+    // Ensure menu items are loaded
+    await menuPage
+      .waitForSelector(".meal-title.ng-binding", { timeout: 5000 })
+      .catch(() => {
+        console.log(`⚠️ No menu found for ${hall.name}`);
+        return;
+      });
 
     // Extract menu items
     let menuItems = await menuPage.evaluate(() => {
@@ -60,13 +65,9 @@ const scrapeDiningHalls = async () => {
   await browser.close();
 };
 
-// **Run scraper immediately when the server starts**
 scrapeDiningHalls();
 
-// **Schedule scraper to run every 10 minutes**
-setInterval(() => {
-  console.log("🔄 Running scheduled dining menu update...");
-  scrapeDiningHalls();
-}, 10 * 60 * 1000);
+export {scrapeDiningHalls}
 
-export { scrapeDiningHalls };
+// Schedule scraper to run every 10 minutes
+setInterval(scrapeDiningHalls, 10 * 60 * 1000);
