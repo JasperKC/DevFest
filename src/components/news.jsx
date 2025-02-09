@@ -18,21 +18,26 @@ const News = () => {
   }, []);
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow">
-      <h2 className="text-xl font-semibold mb-4">📰 Latest News</h2>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">📰 Latest News</h2>
       {loading ? (
-        <p>Loading news...</p>
+        <p className="text-gray-600">Loading news...</p>
       ) : (
-        <ul className="list-disc ml-5">
+        <div className="space-y-4">
           {news.map((article, index) => (
-            <li key={index} className="mb-2">
-              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            <div key={index} className="border-b pb-4">
+              <a
+                href={article.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-semibold text-blue-600 hover:underline"
+              >
                 {article.headline}
               </a>
-              <span className="text-gray-500 text-sm"> - {article.category}</span>
-            </li>
+              <p className="text-gray-500 text-sm">{article.category}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
