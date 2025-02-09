@@ -56,7 +56,6 @@ body {
   height: 100%;
 }
 
-
 .header h1 {
   font-size: 3rem; /* Increased font size for a bigger header */
   font-family: 'Helvetica Neue', sans-serif; /* Improved font choice */
@@ -77,6 +76,15 @@ body {
   width: 100%;
   max-width: 1200px; /* Adjust as needed */
   justify-items: center; /* Center widgets within grid cells */
+  align-items: start; /* Align items to the top of the grid cells */
+}
+
+/* Media Query for smaller screens (stack widgets vertically) */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .content-container {
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 20px; /* Maintain gap between stacked widgets */
+  }
 }
 
 /* Widget Styling */
@@ -89,7 +97,11 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
-  overflow: hidden; /* Prevent content from overflowing */
+  display: flex; /* Use flexbox for layout within the widget */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  max-height: 600px; /* Set a maximum height for the widget */
+  overflow: hidden; /* Ensure content doesn't overflow (especially for non-scrollable widgets) */
 }
 
 /* Hover Effect */
@@ -103,11 +115,19 @@ body {
 #event-widget-container,
 #dining-widget-container,
 #news-widget-container {
-  max-height: 400px;
+  max-height: 400px; /* Set a maximum height for scrollable content */
   overflow-y: auto;
   padding-right: 10px;
   scrollbar-width: thin; /* Keeps it minimal */
   scrollbar-color: transparent transparent; /* Hidden by default */
+  width: 100%; /* Ensure scrollable widgets take full width */
+  flex-grow: 1; /* Allow scrollable content to expand */
+}
+
+/* Weather Widget - Ensure it takes full height */
+.weather-widget { /* Add a class to your Weather widget's container */
+  width: 100%;
+  flex-grow: 1; /* Allow weather content to expand to fill available space */
 }
 
 /* Footer */
