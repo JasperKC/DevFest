@@ -5,18 +5,14 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=list-json"
-    )
+    fetch("https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=list-json")
       .then((res) => res.json())
       .then((data) => {
-        if (data.bwEventList && data.bwEventList.events) {
-          setEvents(data.bwEventList.events.slice(0, 5)); // Show only the latest 5 events
-        }
+        console.log("🔍 Raw Event API Response:", data); // Debugging: log API response
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching events:", error);
+        console.error("❌ Error fetching events:", error);
         setLoading(false);
       });
   }, []);
