@@ -30,11 +30,20 @@ const News = () => {
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl font-bold text-yellow-400 hover:underline"
+                style={{
+                  color: "white", // Make title white
+                  fontSize: "1.5rem", // Make title larger
+                  fontWeight: "bold",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
+                onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
               >
                 {article.headline}
               </a>
-              <p className="text-sm text-gray-300">{article.category}</p>
+              <p style={{ fontSize: "0.9rem", color: "#d1d5db", marginTop: "4px" }}>
+                {article.category}
+              </p>
             </div>
           ))}
         </div>
