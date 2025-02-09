@@ -1,58 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-const EventsWidget = () => {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+const Events = () => {
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch(
-          "https://devfest-npjn.onrender.com/news"
-        );
+    const script1 = document.createElement("script");
+    script1.type = "text/javascript";
+    script1.src =
+      "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme/javascript/eventListWidget.js";
+    document.body.appendChild(script1);
 
-        if (!response.ok) {
-          throw new Error(`Failed to fetch events: ${response.statusText}`);
-        }
+    const script2 = document.createElement("script");
+    script2.type = "text/javascript";
+    script2.src =
+      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&fexpr=(((vpath=%22/public/aliases/Type/Career%20Fair%22)%20or%20(vpath=%22/public/aliases/Type/Open%20House%22)%20or%20(vpath=%22/public/aliases/Type/Panel%22)%20or%20(vpath=%22/public/aliases/Type/Seminar%22)%20or%20(vpath=%22/public/aliases/Type/Sports%22)%20or%20(vpath=%22/public/aliases/Type/Theater%22)%20or%20(vpath=%22/public/aliases/Type/Workshop%22)%20or%20(vpath=%22/public/aliases/Type/Discussion%22)%20or%20(vpath=%22/public/aliases/Type/Cultural%22)%20or%20(vpath=%22/public/aliases/Type/Conference%22)))%20and%20(categories.href=%22/public/.bedework/categories/org/UniversityEvents%22)%20and%20(entity_type=%22event%22%7Centity_type=%22todo%22)&skinName=list-json&setappvar=objName(bwObject)&count=200";
+    document.body.appendChild(script2);
 
-        const data = await response.json();
-        setEvents(data?.events || []); // Ensure it safely extracts events
-      } catch (error) {
-        console.error("❌ Error fetching events:", error);
-      } finally {
-        setLoading(false);
-      }
+    script2.onload = () => {
+      const bwJsWidgetOptions = {
+        title: "🎟️ Upcoming Events",
+        showTitle: false,
+        displayDescription: false,
+        calendarServer: "https://events.columbia.edu",
+        resourcesRoot:
+          "https://events.columbia.edu/3.10/calfeedrsrc.MainCampus/default/default/theme",
+        limitList: true,
+        limit: 5,
+        displayStartDateOnlyInList: true,
+        displayTimeInList: true,
+        displayLocationInList: true,
+        listMode: "byTitle",
+        displayInNewWindow: true,
+      };
+      insertBwEvents("bwOutput", bwObject, bwJsWidgetOptions);
+
+      // Apply styles to fix text color
+      setTimeout(() => {
+        const links = document.querySelectorAll("#bwOutput a");
+        links.forEach((link) => {
+          link.style.color = "#ffffff"; // Brighten link color
+          link.style.fontWeight = "600"; // Make bolder
+        });
+
+        const eventItems = document.querySelectorAll("#bwOutput li");
+        eventItems.forEach((item) => {
+          item.style.marginBottom = "1rem"; // Add spacing between events
+        });
+      }, 500);
     };
 
-    fetchEvents();
+    return () => {
+      document.body.removeChild(script1);
+      document.body.removeChild(script2);
+    };
   }, []);
 
   return (
-    <div id="event-widget-container" className="p-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          🎟️ Upcoming Events
-        </h2>
-        <div
-          className={`text-gray-700 text-lg font-semibold text-center py-4 transition-opacity duration-500 ${
-            loading ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          {loading ? "Loading events..." : events.length > 0 ? (
-            <ul className="space-y-2">
-              {events.map((event, index) => (
-                <li key={index} className="p-2 bg-gray-100 rounded-lg">
-                  {event.title} - {new Date(event.start).toLocaleString()}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            "No upcoming events"
-          )}
-        </div>
-      </div>
+    <div className="bg-[#2357a4] p-6 rounded-lg shadow-lg text-white">
+      <h2 className="text-2xl font-bold mb-4 flex items-center">
+        <span className="mr-2">🎟️</span> Upcoming Events
+      </h2>
+      <div id="bwOutput" className="text-white"></div>
     </div>
   );
 };
 
-export default EventsWidget;
+export default Events;

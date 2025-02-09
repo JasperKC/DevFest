@@ -20,33 +20,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/events", async (req, res) => {
-  try {
-    const response = await fetch(
-      "https://events.columbia.edu/feeder/main/eventsFeed.do?f=y&sort=dtstart.utc:asc&skinName=json"
-    );
-    if (!response.ok) {
-      throw new Error(`Failed to fetch events: ${response.statusText}`);
-    }
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error("❌ Error fetching events:", error);
-    res.status(500).json({ error: "Failed to load events data" });
-  }
-});
-
-// Serve the news JSON
-app.get("/news", (req, res) => {
-  fs.readFile("news.json", "utf8", (err, data) => {
-    if (err) {
-      console.error("❌ Error reading news JSON file:", err);
-      return res.status(500).json({ error: "Failed to load news data" });
-    }
-    res.json(JSON.parse(data));
-  });
-});
-
 // Run the scraper daily at 6 AM
 cron.schedule("0 6 * * *", () => {
   console.log("⏳ Running daily dining menu scrape...");
@@ -59,21 +32,6 @@ cron.schedule("0 6 * * *", () => {
       console.error(`⚠️ Script stderr: ${stderr}`);
     }
     console.log(`✅ Script Output: ${stdout}`);
-  });
-});
-
-// Run the news scraper daily at 7 AM
-cron.schedule("0 7 * * *", () => {
-  console.log("⏳ Running daily news scrape...");
-  exec("node newsScraper.js", (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ Error executing news script: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`⚠️ Script stderr: ${stderr}`);
-    }
-    console.log(`✅ News Script Output: ${stdout}`);
   });
 });
 
