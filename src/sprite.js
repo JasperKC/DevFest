@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const sprite = document.getElementById("sprite");
-  let velocityX = (Math.random() - 0.5) * 10;
-  let velocityY = (Math.random() - 0.5) * 10;
+  let velocityX = 5; // Fixed value for testing
+  let velocityY = 5; // Fixed value for testing
   const speed = 5;
 
   function moveSprite() {
