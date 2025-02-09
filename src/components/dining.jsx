@@ -5,7 +5,7 @@ const Dining = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://devfest-npjn.onrender.com") // Make sure it's the correct API
+    fetch("https://devfest-npjn.onrender.com/dining")
       .then((res) => res.json())
       .then((data) => {
         setDiningHalls(data);

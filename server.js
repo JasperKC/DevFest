@@ -10,11 +10,22 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 
 // Serve the dining menu JSON
-app.get("/", (req, res) => {
+app.get("/dining", (req, res) => {
   fs.readFile("diningMenus.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading JSON file:", err);
       return res.status(500).json({ error: "Failed to load menu data" });
+    }
+    res.json(JSON.parse(data));
+  });
+});
+
+// Serve the news JSON
+app.get("/news", (req, res) => {
+  fs.readFile("news.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ Error reading news JSON file:", err);
+      return res.status(500).json({ error: "Failed to load news data" });
     }
     res.json(JSON.parse(data));
   });
@@ -32,6 +43,21 @@ cron.schedule("0 6 * * *", () => {
       console.error(`⚠️ Script stderr: ${stderr}`);
     }
     console.log(`✅ Script Output: ${stdout}`);
+  });
+});
+
+// Run the news scraper daily at 7 AM
+cron.schedule("0 7 * * *", () => {
+  console.log("⏳ Running daily news scrape...");
+  exec("node newsScraper.js", (error, stdout, stderr) => {
+    if (error) {
+      console.error(`❌ Error executing news script: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`⚠️ Script stderr: ${stderr}`);
+    }
+    console.log(`✅ News Script Output: ${stdout}`);
   });
 });
 
