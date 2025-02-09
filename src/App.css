@@ -14,11 +14,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif; /* Modern Font */
 }
 
 /* App Container */
 .app-container {
+  font-family: 'Arial', sans-serif;
   padding: 20px;
   min-height: 100vh;
   width: 100%;
@@ -36,16 +36,13 @@ body {
 }
 
 .header h1 {
-  font-size: 2.8rem;
-  font-weight: bold;
+  font-size: 2.5rem;
   color: #003366;
-  letter-spacing: 1px;
 }
 
 .header p {
   font-size: 1.2rem;
-  color: #444;
-  line-height: 1.6;
+  color: #555;
 }
 
 /* Centered Grid Layout */
@@ -80,20 +77,13 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 /* Hover Effect */
 .widget-container:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-}
-
-/* Widget Headings */
-.widget-container h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
+  scrollbar-color: grey;
 }
 
 /* Scrollable Widgets */
