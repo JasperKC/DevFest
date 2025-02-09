@@ -148,8 +148,8 @@ body, html {
 
 #computer {
   position: absolute;
-  top: 90%;
-  left: 10%;
+  top: 80%;
+  left: 8%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 100px;
   height: 100px;
@@ -161,8 +161,8 @@ body, html {
 
 #strawberry {
   position: absolute;
-  top: 90%;
-  left: 20%;
+  top: 85%;
+  left: 80%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
