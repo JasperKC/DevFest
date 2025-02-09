@@ -135,8 +135,13 @@ body, html {
 
 #lion {
   position: absolute;
+<<<<<<< Updated upstream
   top: 8.5%;
   left: 60%;
+=======
+  top: 15%;
+  left: 40%;
+>>>>>>> Stashed changes
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
@@ -170,6 +175,32 @@ body, html {
   background-size: cover;
   transition: transform 0.2s linear;
   animation: bounce 1s infinite alternate;
+}
+
+#raspberry {
+  position: absolute;
+  top: 85%;
+  left: 82%;
+  transform: translate(-50%, -50%); /* Only for initial centering */
+  width: 70px;
+  height: 70px;
+  background-image: url('https://static.vecteezy.com/system/resources/previews/019/527/052/non_2x/an-8-bit-retro-styled-pixel-art-illustration-of-a-raspberry-free-png.png');
+  background-size: cover;
+  transition: transform 0.2s linear;
+  animation: bounce 1s infinite alternate;
+}
+
+#cloud {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Only for initial centering */
+  width: 70px;
+  height: 70px;
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/013/442/187/small/illustration-of-pixel-cloud-icon-png.png');
+  background-size: cover;
+  transition: transform 0.2s linear;
+  /* animation: bounce 1s infinite alternate; */
 }
 
 
