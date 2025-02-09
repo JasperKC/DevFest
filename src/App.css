@@ -148,7 +148,7 @@ body, html {
 
 #computer {
   position: absolute;
-  top: 80%;
+  top: 87%;
   left: 5%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 100px;
