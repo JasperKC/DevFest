@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import fs from "fs";
 import { scrapeDiningHalls } from "./scraper.js"; // Ensure you import the scraper
+import cron from "node-cron";
+import { exec } from "child_process";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,7 +25,11 @@ setInterval(() => {
 }, 10 * 60 * 1000);
 
 // **Serve the latest dining data**
-app.get("/dining", (req, res) => {
+app.get("/dining", async (req, res) => {
+  console.log("🔄 Fetching fresh dining data...");
+  
+  await scrapeDiningHalls(); // Run the scraper before responding
+  
   fs.readFile("diningMenus.json", "utf8", (err, data) => {
     if (err) {
       console.error("❌ Error reading JSON file:", err);
