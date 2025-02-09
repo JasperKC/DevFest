@@ -26,9 +26,9 @@ const App = () => {
           </div>
 
           {/* Dining Widget (Scrollable) */}
-          <div className="widget-container" id="dining-widget-container">
+          {/* <div className="widget-container" id="dining-widget-container">
             <Dining />
-          </div>
+          </div> */}
 
           {/* News Widget (Scrollable) */}
           <div className="widget-container" id="news-widget-container">
