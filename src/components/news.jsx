@@ -18,30 +18,48 @@ const News = () => {
   }, []);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">📰 Latest News</h2>
+    <div style={{
+      backgroundColor: "#1E3A8A",
+      padding: "20px",
+      borderRadius: "10px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      color: "white",
+      textAlign: "center"
+    }}>
+      <h2 style={{
+        fontSize: "1.8rem",
+        fontWeight: "bold",
+        marginBottom: "16px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "10px"
+      }}>
+        📰 Latest News
+      </h2>
+      
       {loading ? (
-        <p className="text-gray-600">Loading news...</p>
+        <p style={{ color: "#d1d5db" }}>Loading news...</p>
       ) : (
-        <div className="space-y-4">
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {news.map((article, index) => (
-            <div key={index} className="border-b pb-4">
+            <div key={index} style={{ borderBottom: "1px solid #3B82F6", paddingBottom: "12px" }}>
               <a
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: "white", // Make title white
-                  fontSize: "1.5rem", // Make title larger
+                  color: "#FFD700",
+                  fontSize: "1.2rem",
                   fontWeight: "bold",
-                  textDecoration: "none",
+                  textDecoration: "none"
                 }}
                 onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
                 onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
               >
                 {article.headline}
               </a>
-              <p style={{ fontSize: "0.9rem", color: "#d1d5db", marginTop: "4px" }}>
+              <p style={{ fontSize: "0.9rem", color: "#d1d5db", marginTop: "4px", textAlign: "center" }}>
                 {article.category}
               </p>
             </div>
