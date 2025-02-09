@@ -146,7 +146,6 @@ body, html {
   animation: bounce 1s infinite alternate;
 }
 
-
 @keyframes bounce {
   0% { transform: translateY(0px); }
   100% { transform: translateY(-10px); }
