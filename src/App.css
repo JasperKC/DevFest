@@ -8,7 +8,7 @@
 body {
   height: 100%;
   width: 100%;
-  background-color: #9BDDFF;
+  background-color: #9BDDFF; /* Default background */
   color: #333333;
   display: flex;
   flex-direction: column;
@@ -22,86 +22,64 @@ body {
   padding: 20px;
   min-height: 100vh;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1400px; /* Increased max-width for a wider layout */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Header Styling - Weather Icon */
+/* Header Styling */
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-  margin-top: 40px;
-}
-
-.weather-icon-container {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0064b5;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.weather-icon-container > * {
-  width: 100%;
-  height: 100%;
+  text-align: center;
+  margin-bottom: 30px; /* Increased margin-bottom */
+  margin-top: 40px; /* Added more space above the header */
 }
 
 .header h1 {
-  font-size: 3rem;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 3rem; /* Increased font size for a bigger header */
+  font-family: 'Helvetica Neue', sans-serif; /* Improved font choice */
   color: #003366;
 }
 
 .header p {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Increased font size for better readability */
   font-family: 'Helvetica Neue', sans-serif;
   color: #555;
 }
 
-/* Content Container - Grid Layout */
+/* Centered Grid Layout */
 .content-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 20px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px; /* Keeps layout centered */
   justify-items: center;
-  align-items: start; /* Align items to the top of the grid cells */
 }
 
-/* Media Query for smaller screens (stack widgets vertically) */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .content-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* Weather & Events side-by-side */
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    grid-template-columns: repeat(3, 1fr); /* 3-column layout */
   }
 }
 
 /* Widget Styling */
 .widget-container {
   width: 100%;
-  max-width: none;
+  max-width: 400px; /* Keeps widgets evenly spaced */
   padding: 20px;
   background-color: #0064b5;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 600px;
-  overflow: hidden;
 }
 
 /* Hover Effect */
@@ -111,59 +89,15 @@ body {
   scrollbar-color: grey;
 }
 
-
 /* Scrollable Widgets */
 #event-widget-container,
 #dining-widget-container,
 #news-widget-container {
+  max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-  width: 100%;
-  flex-grow: 1; /* Allow content to grow within the scrollable area */
-  display: flex; /* Ensure flexbox for vertical stacking */
-  flex-direction: column; /* Stack content vertically */
-}
-
-/* Weather Widget */
-.weather-widget {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%; /* Important: Ensure the weather widget takes full height */
-}
-
-.weather-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 10px;
-  width: 100%;
-}
-
-.weather-icon {
-  width: 80px;
-  height: 80px;
-}
-
-.weather-info {
-  text-align: right;
-}
-
-.temperature {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-
-.conditions {
-  font-size: 1rem;
-}
-
-.location {
-  margin-top: auto;
-  text-align: center;
-  padding: 10px;
+  scrollbar-width: thin; /* Keeps it minimal */
+  scrollbar-color: transparent transparent; /* Hidden by default */
 }
 
 /* Footer */
