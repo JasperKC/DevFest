@@ -10,22 +10,13 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 
 app.get("/dining", (req, res) => {
-  console.log("⏳ Fetching fresh dining menu data...");
-  exec("node scraper.js", (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ Error executing script: ${error.message}`);
-      return res.status(500).json({ error: "Failed to fetch menu data" });
+  console.log("⏳ Loading latest dining menu...");
+  fs.readFile("diningMenus.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ Error reading JSON file:", err);
+      return res.status(500).json({ error: "Failed to load menu data" });
     }
-    if (stderr) {
-      console.error(`⚠️ Script stderr: ${stderr}`);
-    }
-    fs.readFile("diningMenus.json", "utf8", (err, data) => {
-      if (err) {
-        console.error("❌ Error reading JSON file:", err);
-        return res.status(500).json({ error: "Failed to load menu data" });
-      }
-      res.json(JSON.parse(data));
-    });
+    res.json(JSON.parse(data));
   });
 });
 
