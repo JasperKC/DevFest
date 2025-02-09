@@ -9,14 +9,23 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
-// Serve the dining menu JSON
 app.get("/dining", (req, res) => {
-  fs.readFile("diningMenus.json", "utf8", (err, data) => {
-    if (err) {
-      console.error("❌ Error reading JSON file:", err);
-      return res.status(500).json({ error: "Failed to load menu data" });
+  console.log("⏳ Fetching fresh dining menu data...");
+  exec("node scraper.js", (error, stdout, stderr) => {
+    if (error) {
+      console.error(`❌ Error executing script: ${error.message}`);
+      return res.status(500).json({ error: "Failed to fetch menu data" });
     }
-    res.json(JSON.parse(data));
+    if (stderr) {
+      console.error(`⚠️ Script stderr: ${stderr}`);
+    }
+    fs.readFile("diningMenus.json", "utf8", (err, data) => {
+      if (err) {
+        console.error("❌ Error reading JSON file:", err);
+        return res.status(500).json({ error: "Failed to load menu data" });
+      }
+      res.json(JSON.parse(data));
+    });
   });
 });
 
@@ -28,21 +37,6 @@ app.get("/news", (req, res) => {
       return res.status(500).json({ error: "Failed to load news data" });
     }
     res.json(JSON.parse(data));
-  });
-});
-
-// Run the scraper daily at 6 AM
-cron.schedule("0 6 * * *", () => {
-  console.log("⏳ Running daily dining menu scrape...");
-  exec("node scraper.js", (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ Error executing script: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`⚠️ Script stderr: ${stderr}`);
-    }
-    console.log(`✅ Script Output: ${stdout}`);
   });
 });
 
