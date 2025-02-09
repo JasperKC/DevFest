@@ -162,7 +162,7 @@ body, html {
 #strawberry {
   position: absolute;
   top: 84%;
-  left: 45%;
+  left: 48%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
@@ -174,8 +174,8 @@ body, html {
 
 #raspberry {
   position: absolute;
-  top: 86%;
-  left: 51%;
+  top: 85%;
+  left: 50%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 70px;
   height: 70px;
@@ -187,8 +187,8 @@ body, html {
 
 #cloud {
   position: absolute;
-  top: 20%;
-  left: 95%;
+  top: 25%;
+  left: 98%;
   transform: translate(-50%, -50%); /* Only for initial centering */
   width: 120px;
   height: 70px;
