@@ -23,7 +23,7 @@ body {
   padding: 20px;
   min-height: 100vh;
   width: 100%;
-  max-width: 1200px; /* Keeps content centered */
+  max-width: 1400px; /* Increased max-width for a wider layout */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,11 +33,12 @@ body {
 /* Header Styling */
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Increased margin-bottom */
+  margin-top: 40px; /* Added more space above the header */
 }
 
 .header h1 {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   color: #003366;
   font-weight: bold;
   letter-spacing: 1px;
@@ -45,8 +46,7 @@ body {
 
 .header p {
   font-size: 1.2rem;
-  color: #444;
-  line-height: 1.6;
+  color: #555;
 }
 
 /* Centered Grid Layout */
