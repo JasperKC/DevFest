@@ -43,7 +43,7 @@ const News = () => {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {news.map((article, index) => (
-            <div key={index} style={{ borderBottom: "1px solid #3B82F6", paddingBottom: "12px" }}>
+            <div key={index} style={{ paddingBottom: "12px" }}>
               <a
                 href={article.link}
                 target="_blank"
